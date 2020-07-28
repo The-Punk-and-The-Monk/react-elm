@@ -4,11 +4,12 @@ import { withRouter } from "react-router-dom";
 import { actionCreators } from "../store";
 import Header from "src/components/header";
 import { List, SearchBar, Button, WhiteSpace, WingBlank } from "antd-mobile";
-
+import "./style.scss";
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
+// 选择详细地址页面, 需要city有值
 class ChooseAddr extends PureComponent {
   componentDidMount() {
     const { city } = this.props;
@@ -17,15 +18,16 @@ class ChooseAddr extends PureComponent {
     } else {
       this.searchBar.focus();
     }
-    this.props.clearSearchAddrList()
-    this.props.getSearchAddrHistory()
+    this.props.clearSearchAddrList(); // 进入页面清空搜索结果列表
+    this.props.getSearchAddrHistory(); // 进入页面从localStorage中取出搜索历史列表
   }
 
   handleAddrClick = (addr) => {
     this.props.pushSearchAddrHistory(addr).then(() => {
-      this.props.history.push("/")
-    })
-  }
+      // 把用户选中的搜索结果条目push到搜索历史中, 函数会更新localStorage, 然后跳转到home
+      this.props.history.push("/");
+    });
+  };
 
   render() {
     const {
@@ -34,14 +36,23 @@ class ChooseAddr extends PureComponent {
       searchAddrList,
       searchAddrHistoryList,
     } = this.props;
+
+    // 搜索结果区域
     const searchResultsArea = searchAddrList.toJS().map((addr) => (
-      <Item key={addr.name + "-" + addr.address} onClick={() => this.handleAddrClick(addr)}>
+      <Item
+        key={addr.name + "-" + addr.address}
+        onClick={() => this.handleAddrClick(addr)}
+      >
         {addr.name} <Brief>{addr.address}</Brief>
       </Item>
     ));
 
+    // 搜索历史区域
     const searchHistoryArea = searchAddrHistoryList.toJS().map((addr) => (
-      <Item key={addr.name + "-" + addr.address} onClick={() => this.handleAddrClick(addr)}>
+      <Item
+        key={addr.name + "-" + addr.address}
+        onClick={() => this.handleAddrClick(addr)}
+      >
         {addr.name} <Brief>{addr.address}</Brief>
       </Item>
     ));
@@ -62,19 +73,22 @@ class ChooseAddr extends PureComponent {
             </span>
           }
         />
+        <div className="chooseaddr-wrapper">
+          <SearchBar
+            placeholder="搜索详细地址"
+            ref={(ref) => (this.searchBar = ref)}
+            onSubmit={(value) => searchAddr(city.get("id"), value)}
+            onCancel={() => this.props.clearSearchAddrList()}
+            showCancelButton
+          />
 
-        <SearchBar
-          placeholder="搜索详细地址"
-          ref={(ref) => (this.searchBar = ref)}
-          onSubmit={(value) => searchAddr(city.get("id"), value)}
-          onCancel={() => this.props.clearSearchAddrList()}
-          showCancelButton
-        />
-
-        {searchResultsArea.length ? <List>{searchResultsArea}</List> : null}
-        {!searchResultsArea.length && searchHistoryArea.length ? (
-          <List renderHeader={() => "搜索历史"}>{searchHistoryArea}</List>
-        ) : null}
+          {/* 有搜索结果区域就显示搜索结果 */}
+          {searchResultsArea.length ? <List>{searchResultsArea}</List> : null}
+          {/* 没有搜索结果且搜索历史不为空 */}
+          {!searchResultsArea.length && searchHistoryArea.length ? (
+            <List renderHeader={() => "搜索历史"}>{searchHistoryArea}</List>
+          ) : null}
+        </div>
       </Fragment>
     );
   }
@@ -92,7 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
   searchAddr(cityId, keyword) {
     dispatch(actionCreators.searchAddr(cityId, keyword));
   },
-  clearSearchAddrList(){
+  clearSearchAddrList() {
     dispatch(actionCreators.clearSearchAddrList());
   },
   getSearchAddrHistory() {
@@ -100,7 +114,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   pushSearchAddrHistory(addr) {
     return dispatch(actionCreators.pushSearchAddrHistory(addr));
-  }
+  },
 });
 
 export default connect(

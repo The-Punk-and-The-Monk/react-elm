@@ -11,12 +11,12 @@ import { fromJS } from "immutable";
 import * as constants from "./constants";
 
 const defaultState = fromJS({
-  city: {},
-  hotCityList: [],
-  allCityMap: {},
-  addr: {},
-  searchAddrList: [],
-  searchAddrHistoryList: [],
+  city: {}, // 城市
+  hotCityList: [], // 热门城市列表
+  allCityMap: {}, // 所有城市map, 字母A~Z 到以其开头的城市list
+  addr: {}, // 最后的详细地址
+  searchAddrList: [], // 搜索结果
+  searchAddrHistoryList: [], // 用户选中的详细地址历史list
 });
 
 export default (state = defaultState, action) => {

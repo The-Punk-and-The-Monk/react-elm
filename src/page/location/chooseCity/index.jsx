@@ -31,9 +31,12 @@ class ChooseCity extends PureComponent {
     }
   }
 
+  // 用户选中城市, 改变city state, 然后跳转到选择详情地址页
   handleClick = (city) => {
-    this.props.changeCity(city).then(() => this.props.history.push('/location/addr'));
-  }
+    this.props
+      .changeCity(city)
+      .then(() => this.props.history.push("/location/addr"));
+  };
 
   render() {
     const { city, hotCityList, allCityMap } = this.props;
@@ -62,7 +65,9 @@ class ChooseCity extends PureComponent {
               square={false}
               renderItem={(city) => (
                 <div className="grid-item">
-                  <span onClick={() => this.handleClick(city)}>{city.name}</span>
+                  <span onClick={() => this.handleClick(city)}>
+                    {city.name}
+                  </span>
                 </div>
               )}
             />
@@ -73,27 +78,34 @@ class ChooseCity extends PureComponent {
     return (
       <Fragment>
         <Header leftContent="ele.me" rightContent="登录|注册" />
-        <List className="my-list">
-          <Item extra={city.get("name") || ""} wrap arrow="horizontal" onClick={() => this.handleClick(city)}>
-            当前城市:
-            <Brief>定位不准时, 请在城市列表中选择</Brief>
-          </Item>
-        </List>
-        <List className="grid-title">
-          <Item>热门城市</Item>
-        </List>
-        <Grid
-          data={hotCityData}
-          columnNum={4}
-          square={false}
-          renderItem={(city) => (
-            <div className="grid-item">
-              <span onClick={() => this.handleClick(city)}>{city.name}</span>
-            </div>
-          )}
-        />
+        <div className="choosecity-wrapper">
+          <List className="my-list">
+            <Item
+              extra={city.get("name") || ""}
+              wrap
+              arrow="horizontal"
+              onClick={() => this.handleClick(city)}
+            >
+              当前城市:
+              <Brief>定位不准时, 请在城市列表中选择</Brief>
+            </Item>
+          </List>
+          <List className="grid-title">
+            <Item>热门城市</Item>
+          </List>
+          <Grid
+            data={hotCityData}
+            columnNum={4}
+            square={false}
+            renderItem={(city) => (
+              <div className="grid-item">
+                <span onClick={() => this.handleClick(city)}>{city.name}</span>
+              </div>
+            )}
+          />
 
-        {allCity}
+          {allCity}
+        </div>
       </Fragment>
     );
   }
@@ -106,7 +118,6 @@ const mapStateToProps = (state) => {
     allCityMap: state.getIn(["location", "allCityMap"]),
   };
 };
-
 
 const mapDispatchToProps = (dispatch) => ({
   changeCity(city) {
@@ -123,4 +134,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ChooseCity));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ChooseCity));
