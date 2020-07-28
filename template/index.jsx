@@ -1,11 +1,9 @@
-import React, { PureComponent, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { actionCreators } from './store';
+import React, { PureComponent, Fragment } from "react";
+import { connect } from "react-redux";
+import { actionCreators } from "./store";
 
-import './style.scss';
-import {
-  
-} from './style';
+import "./style.scss";
+import {} from "./style";
 
 // const Home = () => {
 //   return (
@@ -19,7 +17,7 @@ import {
 
 //   render() {
 //     return (
-//       <div></div>
+//       <Fragment></Fragment>
 //     );
 //   }
 // }
@@ -31,4 +29,4 @@ import {
 
 // });
 
-// export default connect(mapState, mapDispatch)(Home);
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
