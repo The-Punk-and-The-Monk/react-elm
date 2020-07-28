@@ -5,6 +5,12 @@ import "./style.scss";
 
 const Item = List.Item;
 const RestaurantList = (props) => {
+  /**
+   * datalist[] : 餐馆数据列表
+   * title: 列表的标题
+   * loading: datalist是否正在加载, 如果是会渲染占位元素,
+   * fakelistlen: 设置占位元素的listitem个数
+   */
   const { dataList = [], title = "", loading = true, fakeListLen = 20 } = props;
   let displayList = null;
   if (loading) {
@@ -81,10 +87,13 @@ const RestaurantList = (props) => {
   }
   return (
     <List className="restaurant-list-wrapper">
-      <Item>
-        <i className="iconfont icon-dianpu list-title"></i>
-        <span className="list-title">{title}</span>
-      </Item>
+      {title ? (
+        <Item>
+          <i className="iconfont icon-dianpu list-title"></i>
+          <span className="list-title">{title}</span>
+        </Item>
+      ) : null}
+
       {displayList}
     </List>
   );
