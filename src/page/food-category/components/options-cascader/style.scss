@@ -1,0 +1,55 @@
+.options-cascader-wrapper {
+  position: fixed;
+  top: 45px; // header 的高度
+  width: 100%;
+  z-index: 100;
+  .ant-input:placeholder-shown {
+    text-align: center;
+  }
+  .ant-cascader-input.ant-input {
+    height: 45px; // 指定级联菜单栏的高度
+  }
+  .ant-cascader-picker-label {
+    text-align: center;
+  }
+}
+
+#popuparea {
+  position: fixed;
+  z-index: 100;
+  top: 90px;
+  bottom: 0;
+  background: transparent;
+  width: 100%;
+}
+
+.ant-cascader-menus {
+  width: 100%;
+  top: 0px !important; // 由于ant-cascader-menus的top是用js实时算出来的, 所以只好直接用important覆盖
+  ul {
+    width: 50%;
+  }
+}
+
+.option-cascader-badge {
+  position: absolute;
+  right: 30px;
+  .ant-badge-count {
+    background: #888;
+  }
+}
+
+.options-cascader-li-span {
+  display: inline-block;
+  width: 100%;
+}
+
+.ant-cascader-menu-item {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  position: relative;
+}
+
+.ant-cascader-menu {
+  height: 330px;
+}
