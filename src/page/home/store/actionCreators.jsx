@@ -13,12 +13,13 @@ import { _errTips } from "utils/index.jsx";
 
 const _restaurant = new RestaurantService();
 
-export const getRestaurantCategoryList = () => {
+// 获取首页的餐馆分类列表
+export const getHomeRestaurantCategoryList = () => {
   return (dispatch) => {
-    _restaurant.getRestaurantCategoryList().then(
+    _restaurant.getHomeRestaurantCategoryList().then(
       (res) => {
         dispatch({
-          type: constants.CHANGE_RESTAURANT_CATEGORY_LIST,
+          type: constants.CHANGE_HOME_RESTAURANT_CATEGORY_LIST,
           data: res.data,
         });
       },
@@ -29,9 +30,10 @@ export const getRestaurantCategoryList = () => {
   };
 };
 
+// 获取附近的餐馆列表
 export const getNearbyRestaurantList = ({ latitude, longitude }) => {
   return (dispatch) => {
-    _restaurant.getNearbyRestaurantList({ latitude, longitude }).then(
+    _restaurant.getRestaurantList({ latitude, longitude }).then(
       (res) => {
         dispatch({
           type: constants.CHANGE_NEARBY_RESTAURANT_LIST,

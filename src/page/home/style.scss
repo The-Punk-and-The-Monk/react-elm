@@ -4,14 +4,14 @@
     background: #f5f5f5;
   }
 
-  .grid {
-    touch-action: pan-y;
-  }
-
   .home-content-wrapper {
-    position: fixed;
-    width: 100%;
-    top: 45px;
-    bottom: 55px;
+    margin-top: 45px; // header height
+    margin-bottom: 55px; // footer height
+    .ant-carousel .slick-dots li button {
+      background: #108ee9;
+    }
+    .ant-carousel .slick-dots-bottom {
+      bottom: -7px;
+    }
   }
 }
