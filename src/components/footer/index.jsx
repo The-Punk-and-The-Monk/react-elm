@@ -1,29 +1,26 @@
-import React, { Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { actionCreators } from "./store";
 import { TabBar } from "antd-mobile";
 // import * as S  from './style';
 import "./style.scss";
 
-const Footer = (props) => {
-  const { selectedTab, hidden, fullscreen } = useSelector((state) => {
-    const footer = state.get("footer");
-    return {
-      selectedTab: footer.get("selectedTab"),
-      hidden: footer.get("hidden"),
-      fullscreen: footer.get("fullscreen"),
-    };
-  });
+const tabNameToPath = {
+  homeTab: "/home",
+  searchTab: "/search",
+  orderTab: "/order",
+  myTab: "/my",
+};
 
-  const dispatch = useDispatch();
-
-  const changeSelectedTab = (obj) => {
-    dispatch(actionCreators.changeSelectedTab(obj.selectedTab));
+class Footer extends PureComponent {
+  handlePress = (selectedTab) => {
+    this.props.changeSelectedTab(selectedTab);
+    this.props.history.push(tabNameToPath[selectedTab]);
   };
-  // useEffect(() => {
-  // }, [selectedTab, hidden, fullscreen]);
-
-  return (
+  render() {
+    const { selectedTab, hidden, fullscreen } = this.props;
+    return (
       <div className="footer-wrapper">
         <TabBar
           unselectedTintColor="#949494"
@@ -38,12 +35,10 @@ const Footer = (props) => {
             selectedIcon={
               <i className="iconfont icon-elema-blue footer-icon"></i>
             }
-            selected={selectedTab === "blueTab"}
+            selected={selectedTab === "homeTab"}
             // badge={1}
             onPress={() => {
-              changeSelectedTab({
-                selectedTab: "blueTab",
-              });
+              this.handlePress("homeTab");
             }}
             data-seed="logId"
           ></TabBar.Item>
@@ -55,11 +50,9 @@ const Footer = (props) => {
             title="搜索"
             key="搜索"
             // badge={'new'}
-            selected={selectedTab === "redTab"}
+            selected={selectedTab === "searchTab"}
             onPress={() => {
-              changeSelectedTab({
-                selectedTab: "redTab",
-              });
+              this.handlePress("searchTab");
             }}
             data-seed="logId1"
           >
@@ -73,11 +66,9 @@ const Footer = (props) => {
             title="订单"
             key="订单"
             // dot
-            selected={selectedTab === "greenTab"}
+            selected={selectedTab === "orderTab"}
             onPress={() => {
-              changeSelectedTab({
-                selectedTab: "greenTab",
-              });
+              this.handlePress("orderTab");
             }}
           ></TabBar.Item>
           <TabBar.Item
@@ -87,41 +78,27 @@ const Footer = (props) => {
             }
             title="我的"
             key="我的"
-            selected={selectedTab === "yellowTab"}
+            selected={selectedTab === "myTab"}
             onPress={() => {
-              changeSelectedTab({
-                selectedTab: "yellowTab",
-              });
+              this.handlePress("myTab");
             }}
           ></TabBar.Item>
         </TabBar>
       </div>
-  );
-};
+    );
+  }
+}
 
-export default Footer;
+const mapStateToProps = (state) => ({
+  selectedTab: state.getIn(["footer", "selectedTab"]),
+  hidden: state.getIn(["footer", "hidden"]),
+  fullscreen: state.getIn(["footer", "fullscreen"]),
+});
 
-// class Home extends PureComponent {
+const mapDispatchToProps = (dispatch) => ({
+  changeSelectedTab(selectedTab) {
+    dispatch(actionCreators.changeSelectedTab(selectedTab));
+  },
+});
 
-//   componentDidMount() {
-
-//   }
-
-//   render() {
-//     return (
-//       <div></div>
-//     );
-//   }
-// }
-
-// const mapState = (state) => ({
-//   // showScrollTop: state.get('home').get('showScrollTop')
-// });
-
-// const mapDispatch = (dispatch) => ({
-//   // changeHomeData() {
-//   //   dispatch(actionCreators.getHomeData())
-//   // },
-// });
-
-// export default connect(mapState, mapDispatch)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Footer));
