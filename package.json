@@ -16,6 +16,7 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/runtime": "^7.10.5",
     "@babel/runtime-corejs3": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
@@ -23,6 +24,7 @@
     "core-js": "^3.6.5",
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
+    "dayjs": "^1.8.30",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -44,12 +46,10 @@
     "webpack-parallel-uglify-plugin": "^1.1.2"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
     "antd": "^4.4.3",
     "antd-mobile": "^2.3.3",
     "axios": "^0.19.2",
     "better-scroll": "^2.0.0-beta.10",
-    "dayjs": "^1.8.30",
     "immutable": "^4.0.0-rc.12",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
