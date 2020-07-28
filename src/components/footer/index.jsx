@@ -24,8 +24,6 @@ const Footer = (props) => {
   // }, [selectedTab, hidden, fullscreen]);
 
   return (
-    <Fragment>
-      <div className="footer-children-wrapper">{props.children}</div>
       <div className="footer-wrapper">
         <TabBar
           unselectedTintColor="#949494"
@@ -98,7 +96,6 @@ const Footer = (props) => {
           ></TabBar.Item>
         </TabBar>
       </div>
-    </Fragment>
   );
 };
 

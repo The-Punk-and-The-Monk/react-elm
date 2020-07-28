@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-27 10:14:49
- * @LastEditTime: 2020-07-27 22:26:50
+ * @LastEditTime: 2020-07-28 10:50:44
  * @FilePath: /react-elm/src/page/home/index.jsx
  * @Description:
  */
@@ -17,7 +17,9 @@ import Footer from "src/components/footer";
 import RestaurantList from "src/components/restaurant-list";
 import { Icon, Grid, WhiteSpace } from "antd-mobile";
 import { Skeleton, Avatar } from "antd";
+import BScroll from 'better-scroll'
 import "./style.scss";
+
 
 class Home extends PureComponent {
   componentDidMount() {
@@ -31,6 +33,20 @@ class Home extends PureComponent {
       latitude: addr.get("latitude"),
       longitude: addr.get("longitude"),
     });
+
+    document.addEventListener('touchmove', function (event) {
+      event.preventDefault();
+    },{
+      passive: false
+    })
+    const wrapper = document.querySelector('.home-content-wrapper')
+    this.scroll = new BScroll(wrapper)
+  }
+
+  componentDidUpdate(){
+    if(this.scroll){
+      this.scroll.refresh()
+    }
   }
 
   render() {
@@ -65,23 +81,25 @@ class Home extends PureComponent {
     }
 
     return (
-      <Fragment>
+      <div className="home-wrapper">
         <Header
           leftContent={<Icon type="search" size={"xs"}></Icon>}
           midContent={addr.get("name")}
           rightContent={<i className="iconfont icon-wode"></i>}
-        >
-          <Footer>
-            <Grid data={data} columnNum={4} isCarousel />
-            <div className="white-space"></div>
-            <RestaurantList
-              dataList={nearbyRestaurantList}
-              loading={nearbyRestaurantListLoading}
-              title="附近商家"
-            />
-          </Footer>
-        </Header>
-      </Fragment>
+        />
+          <div className="home-content-wrapper">
+              <div className="content-wrapper">
+                <Grid data={data} columnNum={4} isCarousel className="grid"/>
+                <div className="white-space"></div>
+                <RestaurantList
+                  dataList={nearbyRestaurantList}
+                  loading={nearbyRestaurantListLoading}
+                  title="附近商家"
+                />
+              </div>
+            </div>
+        <Footer/>
+      </div>
     );
   }
 }

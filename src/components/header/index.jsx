@@ -5,7 +5,6 @@ import "./style.scss";
 const Header = (props) => {
   const { leftContent = "", midContent = "", rightContent = "" } = props;
   return (
-    <Fragment>
       <div className="header-wrapper">
         <NavBar
           mode="dark"
@@ -15,8 +14,6 @@ const Header = (props) => {
           {midContent}
         </NavBar>
       </div>
-      <div className="header-children-wrapper">{props.children}</div>
-    </Fragment>
   );
 };
 
