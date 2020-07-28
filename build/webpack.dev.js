@@ -2,20 +2,15 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:36:52
- * @LastEditTime: 2020-07-27 22:54:26
+ * @LastEditTime: 2020-07-28 19:23:43
  * @FilePath: /react-elm/build/webpack.dev.js
  * @Description:
  */
 
 const webpack = require("webpack");
 const webpackCommonConf = require("./webpack.common.js");
-const {
-  merge
-} = require("webpack-merge");
-const {
-  srcPath,
-  distPath
-} = require("./paths.jsx");
+const { merge } = require("webpack-merge");
+const { srcPath, distPath } = require("./paths.jsx");
 
 // 热更新
 // const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
@@ -97,6 +92,14 @@ module.exports = merge(webpackCommonConf, {
       },
       "/img": {
         target: "http://elm.cangdu.org",
+        secure: false,
+        changeOrigin: true,
+      },
+      "/proxyapi": {
+        target: "https://elm.cangdu.org",
+        pathRewrite: {
+          "^/proxyapi": "",
+        },
         secure: false,
         changeOrigin: true,
       },
