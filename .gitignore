@@ -1,1 +1,5 @@
 node_modules
+API.md
+.gitignore
+.vscode/settings.json
+.DS_Store
