@@ -46,6 +46,7 @@
     "webpack-parallel-uglify-plugin": "^1.1.2"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.1",
     "antd": "^4.4.3",
     "antd-mobile": "^2.3.3",
     "axios": "^0.19.2",

@@ -1,0 +1,26 @@
+__v(pin):0
+username(pin):"dlakjadsf"
+user_id(pin):53123
+id(pin):53123
+city(pin):"莆田"
+registe_time(pin):"2020-07-29 18:13"
+_id(pin):"5f214bbff3ffc74009e292d4"
+column_desc
+  gift_mall_desc(pin):"0元好物在这里"
+  game_link(pin):"https://gamecenter.faas.ele.me"
+  game_is_show(pin):1
+  game_image_hash(pin):"05f108ca4e0c543488799f0c7c708cb1jpeg"
+  game_desc(pin):"玩游戏领红包"
+point(pin):0
+mobile(pin):""
+is_mobile_valid(pin):true
+is_email_valid(pin):false
+is_active(pin):1
+gift_amount(pin):3
+email(pin):""
+delivery_card_expire_days(pin):0
+current_invoice_id(pin):0
+current_address_id(pin):0
+brand_member_new(pin):0
+balance(pin):0
+avatar(pin):"default.jpg"
