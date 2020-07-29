@@ -18,14 +18,16 @@ class FoodCategory extends PureComponent {
       addr,
       dispalyRestaurantListLoading,
       getRestaurantList,
+      setRestaurantList,
     } = this.props;
-    if (dispalyRestaurantListLoading) {
-      getRestaurantList({
-        longitude: addr.get("longitude"),
-        latitude: addr.get("latitude"),
-        restaurant_category_id: id,
-      });
-    }
+
+    // 每次进入页面重新加载数据
+    setRestaurantList([]);
+    getRestaurantList({
+      longitude: addr.get("longitude"),
+      latitude: addr.get("latitude"),
+      restaurant_category_id: id,
+    });
   }
   render() {
     const { history } = this.props;
@@ -38,10 +40,11 @@ class FoodCategory extends PureComponent {
       <Fragment>
         <Header
           leftContent={
-            <i
-              className="iconfont icon-zuojiantou"
-              onClick={() => history.go(-1)}
-            ></i>
+            <i onClick={() => history.go(-1)}>
+              <svg className="icon" aria-hidden="true">
+                <use xlinkHref="#icon-zuojiantou"></use>
+              </svg>
+            </i>
           }
           midContent={title}
         />
@@ -66,6 +69,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getRestaurantList(params) {
     dispatch(actionCreators.getRestaurantList(params));
+  },
+  setRestaurantList(data) {
+    dispatch(actionCreators.setRestaurantList(data));
   },
 });
 
