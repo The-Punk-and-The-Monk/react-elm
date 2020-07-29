@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-07-28 17:47:15
+ * @LastEditTime: 2020-07-29 20:38:25
  * @FilePath: /react-elm/src/App.jsx
  * @Description: entry
  */
@@ -23,6 +23,7 @@ import FoodCategory from "src/page/food-category";
 import LocalStorageLoader from "./components/localstorage-loader";
 import Location from "./page/location";
 import Search from "./page/search";
+import User from "./page/user";
 
 const App = () => (
   <Fragment>
@@ -41,6 +42,7 @@ const App = () => (
       <Route path="/search">
         <Search />
       </Route>
+      <Route path="/user" component={User} />
       <Redirect exact from="/" to="/home" />
     </Switch>
   </Fragment>

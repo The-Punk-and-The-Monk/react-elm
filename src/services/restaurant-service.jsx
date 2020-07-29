@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class RestaurantService {
   getHomeRestaurantCategoryList() {
-    return axios.get("/api/v2/index_entry");
+    return axios.get("/proxyapi/v2/index_entry");
   }
 
   getAllRestaurantCategoriesList() {
@@ -34,7 +34,7 @@ export default class RestaurantService {
   }) {
     return axios.get(
       // `/api/shopping/restaurants?latitude=${latitude}&longitude=${longitude}&offset=${offset}&limit=${limit}&restaurant_category_id=${restaurant_category_id}&order_by=${order_by}&delivery_mode=${delivery_mode}&support_ids=${support_ids}`
-      `https://elm.cangdu.org/shopping/restaurants?latitude=24.436002&longitude=118.102693&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=${restaurant_category_id}&restaurant_category_ids[]=&order_by=${order_by}&delivery_mode[]=&support_ids[]=${support_ids}`
+      `/proxyapi/shopping/restaurants?latitude=24.436002&longitude=118.102693&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=${restaurant_category_id}&restaurant_category_ids[]=${restaurant_category_ids}&order_by=${order_by}&delivery_mode[]=${delivery_mode}&support_ids[]=${support_ids}`
     );
   }
 }
