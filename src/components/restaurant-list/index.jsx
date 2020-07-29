@@ -89,7 +89,9 @@ const RestaurantList = (props) => {
     <List className="restaurant-list-wrapper">
       {title ? (
         <Item>
-          <i className="iconfont icon-dianpu list-title"></i>
+          <svg className="icon" aria-hidden="true">
+            <use xlinkHref="#icon-dianpu"></use>
+          </svg>
           <span className="list-title">{title}</span>
         </Item>
       ) : null}

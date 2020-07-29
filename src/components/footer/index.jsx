@@ -1,25 +1,19 @@
 import React, { PureComponent } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { actionCreators } from "./store";
 import { TabBar } from "antd-mobile";
 // import * as S  from './style';
 import "./style.scss";
 
-const tabNameToPath = {
-  homeTab: "/home",
-  searchTab: "/search",
-  orderTab: "/order",
-  myTab: "/my",
+const tabPath = {
+  homePath: "/home",
+  searchPath: "/search",
+  orderPath: "/order",
+  userPath: "/user",
 };
 
 class Footer extends PureComponent {
-  handlePress = (selectedTab) => {
-    this.props.changeSelectedTab(selectedTab);
-    this.props.history.push(tabNameToPath[selectedTab]);
-  };
   render() {
-    const { selectedTab, hidden, fullscreen } = this.props;
+    const { selectedTab, hidden, fullscreen, history } = this.props;
     return (
       <div className="footer-wrapper">
         <TabBar
@@ -31,56 +25,80 @@ class Footer extends PureComponent {
           <TabBar.Item
             title="外卖"
             key="外卖"
-            icon={<i className="iconfont icon-elema footer-icon"></i>}
+            icon={
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-elema"></use>
+              </svg>
+            }
             selectedIcon={
-              <i className="iconfont icon-elema-blue footer-icon"></i>
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-elema-blue"></use>
+              </svg>
             }
             selected={selectedTab === "homeTab"}
             // badge={1}
             onPress={() => {
-              this.handlePress("homeTab");
+              history.push(tabPath.homePath);
             }}
             data-seed="logId"
           ></TabBar.Item>
           <TabBar.Item
-            icon={<i className="iconfont icon-iconset0394 footer-icon"></i>}
+            icon={
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-iconset0394"></use>
+              </svg>
+            }
             selectedIcon={
-              <i className="iconfont icon-iconset0394-blue footer-icon"></i>
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-iconset0394-blue"></use>
+              </svg>
             }
             title="搜索"
             key="搜索"
             // badge={'new'}
             selected={selectedTab === "searchTab"}
             onPress={() => {
-              this.handlePress("searchTab");
+              history.push(tabPath.searchPath);
             }}
             data-seed="logId1"
           >
             {/* {this.renderContent('Life')} */}
           </TabBar.Item>
           <TabBar.Item
-            icon={<i className="iconfont icon-weibiaoti footer-icon"></i>}
+            icon={
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-weibiaoti"></use>
+              </svg>
+            }
             selectedIcon={
-              <i className="iconfont icon-weibiaoti-blue footer-icon"></i>
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-weibiaoti-blue"></use>
+              </svg>
             }
             title="订单"
             key="订单"
             // dot
             selected={selectedTab === "orderTab"}
             onPress={() => {
-              this.handlePress("orderTab");
+              history.push(tabPath.orderPath);
             }}
           ></TabBar.Item>
           <TabBar.Item
-            icon={<i className="iconfont icon-wode footer-icon"></i>}
+            icon={
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-wode"></use>
+              </svg>
+            }
             selectedIcon={
-              <i className="iconfont icon-wode-blue footer-icon"></i>
+              <svg className="icon footer-icon" aria-hidden="true">
+                <use xlinkHref="#icon-wode-blue"></use>
+              </svg>
             }
             title="我的"
             key="我的"
-            selected={selectedTab === "myTab"}
+            selected={selectedTab === "userTab"}
             onPress={() => {
-              this.handlePress("myTab");
+              history.push(tabPath.userPath);
             }}
           ></TabBar.Item>
         </TabBar>
@@ -89,16 +107,4 @@ class Footer extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedTab: state.getIn(["footer", "selectedTab"]),
-  hidden: state.getIn(["footer", "hidden"]),
-  fullscreen: state.getIn(["footer", "fullscreen"]),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeSelectedTab(selectedTab) {
-    dispatch(actionCreators.changeSelectedTab(selectedTab));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Footer));
+export default withRouter(Footer);
