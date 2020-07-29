@@ -11,16 +11,12 @@ import "./style.scss";
 import {} from "./style";
 
 class Search extends PureComponent {
-  componentDidMount() {
-    const { changeSelectedTab } = this.props;
-    changeSelectedTab("searchTab");
-  }
   render() {
     return (
       <Fragment>
         <Header />
         <div>hahaha</div>
-        <Footer />
+        <Footer selectedTab="searchTab" />
       </Fragment>
     );
   }
@@ -28,10 +24,6 @@ class Search extends PureComponent {
 
 const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-  changeSelectedTab(targetTab) {
-    dispatch(footerActionCreators.changeSelectedTab(targetTab));
-  },
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

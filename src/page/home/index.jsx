@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-27 10:14:49
- * @LastEditTime: 2020-07-28 17:46:37
+ * @LastEditTime: 2020-07-29 21:11:37
  * @FilePath: /react-elm/src/page/home/index.jsx
  * @Description:
  */
@@ -12,7 +12,6 @@ import { Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
 import { actionCreators as locationActionCreators } from "src/page/location/store";
-import { actionCreators as footerActionCreators } from "src/components/footer/store";
 import Header from "src/components/header";
 import Footer from "src/components/footer";
 import RestaurantList from "src/components/restaurant-list";
@@ -30,9 +29,7 @@ class Home extends PureComponent {
       getHomeRestaurantCategoryList,
       nearbyRestaurantListLoading,
       getNearbyRestaurantList,
-      changeSelectedTab,
-    } = this.props;
-    changeSelectedTab("homeTab"); // 改变footer的选中标签state
+    } = this.props; // 改变footer的选中标签state
     if (homeRestaurantCategoryListLoading) {
       getHomeRestaurantCategoryList();
     }
@@ -42,17 +39,8 @@ class Home extends PureComponent {
         longitude: addr.get("longitude"),
       });
     }
-    // if (addr.get("geohash")) {
-    //   const wrapper = document.querySelector(".home-content-wrapper");
-    //   this.scroll = new BScroll(wrapper);
-    // }
   }
 
-  // componentDidUpdate() {
-  //   if (this.scroll) {
-  //     this.scroll.refresh();
-  //   }
-  // }
   handleCategoryClick = (target, index) => {
     const { history } = this.props;
     const { text, id } = target;
@@ -110,7 +98,11 @@ class Home extends PureComponent {
                 {addr.get("name")}
               </span>
             }
-            rightContent={<i className="iconfont icon-wode"></i>}
+            rightContent={
+              <svg className="icon" aria-hidden="true">
+                <use xlinkHref="#icon-wode-white-copy"></use>
+              </svg>
+            }
           />
           <div className="home-content-wrapper">
             <div className="content-wrapper">
@@ -120,7 +112,11 @@ class Home extends PureComponent {
                   columnNum={4}
                   onClick={this.handleCategoryClick}
                 />
-                <Grid data={data.slice(8)} columnNum={4} />
+                <Grid
+                  data={data.slice(8)}
+                  columnNum={4}
+                  onClick={this.handleCategoryClick}
+                />
               </Carousel>
               <div className="white-space"></div>
               <RestaurantList
@@ -130,7 +126,7 @@ class Home extends PureComponent {
               />
             </div>
           </div>
-          <Footer />
+          <Footer selectedTab="homeTab" />
         </div>
       );
     }
@@ -163,9 +159,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getAddr() {
     dispatch(locationActionCreators.getAddr());
-  },
-  changeSelectedTab(targetTab) {
-    dispatch(footerActionCreators.changeSelectedTab(targetTab));
   },
 });
 

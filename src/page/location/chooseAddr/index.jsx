@@ -61,10 +61,12 @@ class ChooseAddr extends PureComponent {
       <Fragment>
         <Header
           leftContent={
-            <i
-              className="iconfont icon-zuojiantou"
-              onClick={() => this.props.history.go(-1)}
-            ></i>
+            <i onClick={() => this.props.history.go(-1)}>
+              {" "}
+              <svg className="icon" aria-hidden="true">
+                <use xlinkHref="#icon-zuojiantou"></use>
+              </svg>
+            </i>
           }
           midContent={city.get("name")}
           rightContent={

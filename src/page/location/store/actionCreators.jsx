@@ -87,7 +87,6 @@ export const getSearchAddrHistory = () => {
     let searchAddrHistory = fromJS(
       JSON.parse(localStorage.getItem("searchAddrHistory"))
     );
-    console.log(searchAddrHistory);
     if (!searchAddrHistory) {
       searchAddrHistory = [];
       localStorage.setItem(
