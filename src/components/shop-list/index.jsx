@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Card, List } from "antd-mobile";
 import { Rate, Skeleton, Avatar } from "antd";
 import "./style.scss";
@@ -11,6 +12,7 @@ const ShopList = (props) => {
    * loading: datalist是否正在加载, 如果是会渲染占位元素,
    * fakelistlen: 设置占位元素的listitem个数
    */
+  const history = useHistory();
   const { dataList = [], title = "", loading = true, fakeListLen = 20 } = props;
   let displayList = null;
   if (loading) {
@@ -21,7 +23,10 @@ const ShopList = (props) => {
     ));
   } else {
     displayList = dataList.map((data) => (
-      <Item key={data.get("id")}>
+      <Item
+        key={data.get("id")}
+        onClick={() => history.push(`/shop/${data.get("id")}`)}
+      >
         <div className="list-item-content-wrapper">
           <div className="shop-list-item-avatar-wraper">
             <Avatar

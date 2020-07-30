@@ -17,7 +17,6 @@ import Footer from "src/components/footer";
 import ShopList from "src/components/shop-list";
 import { Icon, Grid } from "antd-mobile";
 import { Skeleton, Avatar, Carousel } from "antd";
-import BScroll from "better-scroll";
 import "./style.scss";
 
 class Home extends PureComponent {

@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-07-29 20:38:25
+ * @LastEditTime: 2020-07-30 10:58:46
  * @FilePath: /react-elm/src/App.jsx
  * @Description: entry
  */
@@ -24,6 +24,7 @@ import LocalStorageLoader from "./components/localstorage-loader";
 import Location from "./page/location";
 import Search from "./page/search";
 import User from "./page/user";
+import Shop from "./page/shop";
 
 const App = () => (
   <Fragment>
@@ -35,6 +36,7 @@ const App = () => (
       <Route path="/shop-category/:title/:id">
         <ShopCategory />
       </Route>
+      <Route path="/shop" component={Shop} />
       <Redirect from="/shop-category" to="/home" />
       <Route path="/location">
         <Location />

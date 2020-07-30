@@ -1,0 +1,93 @@
+.shop-menu-wrapper {
+  .ant-layout-sider {
+    background: transparent;
+  }
+
+  .food-list-wrapper {
+    .food-list-title {
+      font-size: 1.5em;
+    }
+    .food-list-title-desc {
+      margin-left: 5px;
+      font-size: 12px;
+      color: #aaa;
+    }
+    .food-avatar {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+    .ant-list-item {
+      background: white;
+      .ant-row {
+        width: 100%;
+      }
+      .ant-avatar {
+      }
+      h1 {
+        font-size: 1.5em;
+        margin: 0.17em 0;
+      }
+      .description {
+        color: #aaa;
+        margin-bottom: 0.3em;
+      }
+    }
+    .price {
+      color: orange;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .jia-jian {
+      text-align: right;
+      font-size: 2em;
+      .jia {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+    .spec-span {
+      color: #fff;
+      font-size: 18px;
+      font-weight: lighter;
+      background: #3190e8;
+      border-radius: 8px;
+      padding: 5px;
+      margin-right: 10px;
+      position: relative;
+      top: -4px;
+    }
+  }
+  #spec-modal-container {
+    .ant-modal {
+      top: 250px;
+      width: 420px !important;
+    }
+    .ant-radio-button-wrapper {
+      float: left;
+      margin: 3px;
+    }
+  }
+
+  .cart-cnt {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: lighter;
+    margin: 0 10px;
+    position: relative;
+    top: -4px;
+  }
+
+  .category-cnt {
+    display: block;
+    background: #3190e8;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    line-height: 18px;
+    width: 18px;
+    text-align: center;
+    height: 18px;
+    color: white;
+  }
+}

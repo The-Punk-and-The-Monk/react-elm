@@ -37,4 +37,12 @@ export default class ShopService {
       `/proxyapi/shopping/restaurants?latitude=24.436002&longitude=118.102693&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=${restaurant_category_id}&restaurant_category_ids[]=${restaurant_category_ids}&order_by=${order_by}&delivery_mode[]=${delivery_mode}&support_ids[]=${support_ids}`
     );
   }
+
+  getShopDetails(shopid) {
+    return axios.get(`/proxyapi/shopping/restaurant/${shopid}`);
+  }
+
+  getShopMenu(shopid) {
+    return axios.get(`/proxyapi/shopping/v2/menu?restaurant_id=${shopid}`);
+  }
 }
