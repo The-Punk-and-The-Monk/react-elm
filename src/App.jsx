@@ -19,7 +19,7 @@ import {
 } from "react-router-dom";
 import store from "./store";
 import Home from "src/page/home/loadable.jsx";
-import FoodCategory from "src/page/food-category";
+import ShopCategory from "src/page/shop-category";
 import LocalStorageLoader from "./components/localstorage-loader";
 import Location from "./page/location";
 import Search from "./page/search";
@@ -32,10 +32,10 @@ const App = () => (
       <Route path="/home">
         <Home />
       </Route>
-      <Route path="/food-category/:title/:id">
-        <FoodCategory />
+      <Route path="/shop-category/:title/:id">
+        <ShopCategory />
       </Route>
-      <Redirect from="/food-category" to="/home" />
+      <Redirect from="/shop-category" to="/home" />
       <Route path="/location">
         <Location />
       </Route>

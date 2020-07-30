@@ -8,15 +8,15 @@
  */
 
 import * as constants from "./constants";
-import RestaurantService from "services/restaurant-service.jsx";
+import ShopService from "services/shop-service.jsx";
 import { _errTips } from "utils/index.jsx";
 
-const _restaurant = new RestaurantService();
+const _shop = new ShopService();
 
 // 获取首页的餐馆分类列表
-export const getHomeRestaurantCategoryList = () => {
+export const getHomeShopCategoryList = () => {
   return (dispatch) => {
-    _restaurant.getHomeRestaurantCategoryList().then(
+    _shop.getHomeShopCategoryList().then(
       (res) => {
         dispatch({
           type: constants.CHANGE_HOME_RESTAURANT_CATEGORY_LIST,
@@ -31,9 +31,9 @@ export const getHomeRestaurantCategoryList = () => {
 };
 
 // 获取附近的餐馆列表
-export const getNearbyRestaurantList = ({ latitude, longitude }) => {
+export const getNearbyShopList = ({ latitude, longitude }) => {
   return (dispatch) => {
-    _restaurant.getRestaurantList({ latitude, longitude }).then(
+    _shop.getShopList({ latitude, longitude }).then(
       (res) => {
         dispatch({
           type: constants.CHANGE_NEARBY_RESTAURANT_LIST,

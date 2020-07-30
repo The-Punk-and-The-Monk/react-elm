@@ -2,39 +2,38 @@ import React, { PureComponent, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { actionCreators } from "./store";
-import { actionCreators as footerActionCreators } from "src/components/footer/store";
 
 import Header from "src/components/header";
-import RestaurantList from "src/components/restaurant-list";
+import ShopList from "src/components/shop-list";
 import OptionsCascader from "./components/options-cascader";
 
 import "./style.scss";
 
-class FoodCategory extends PureComponent {
+class ShopCategory extends PureComponent {
   componentDidMount() {
-    console.log("foodcategory mount");
+    console.log("shopcategory mount");
     const { id } = this.props.match.params;
     const {
       addr,
-      dispalyRestaurantListLoading,
-      getRestaurantList,
-      setRestaurantList,
+      dispalyShopListLoading,
+      getShopList,
+      setShopList,
     } = this.props;
 
     // 每次进入页面重新加载数据
-    setRestaurantList([]);
-    getRestaurantList({
+    setShopList([]);
+    getShopList({
       longitude: addr.get("longitude"),
       latitude: addr.get("latitude"),
-      restaurant_category_id: id,
+      shop_category_id: id,
     });
   }
   render() {
     const { history } = this.props;
     const { title } = this.props.match.params;
     let {
-      dispalyRestaurantListLoading: displayLoading,
-      dispalyRestaurantList: displayList,
+      dispalyShopListLoading: displayLoading,
+      dispalyShopList: displayList,
     } = this.props;
     return (
       <Fragment>
@@ -49,8 +48,8 @@ class FoodCategory extends PureComponent {
           midContent={title}
         />
         <OptionsCascader />
-        <div className="foodcategory-displaylist-wrapper">
-          <RestaurantList dataList={displayList} loading={displayLoading} />
+        <div className="shopcategory-displaylist-wrapper">
+          <ShopList dataList={displayList} loading={displayLoading} />
         </div>
       </Fragment>
     );
@@ -59,23 +58,23 @@ class FoodCategory extends PureComponent {
 
 const mapStateToProps = (state) => ({
   addr: state.getIn(["location", "addr"]),
-  dispalyRestaurantListLoading: state.getIn([
-    "foodCategory",
-    "dispalyRestaurantListLoading",
+  dispalyShopListLoading: state.getIn([
+    "shopCategory",
+    "dispalyShopListLoading",
   ]),
-  dispalyRestaurantList: state.getIn(["foodCategory", "dispalyRestaurantList"]),
+  dispalyShopList: state.getIn(["shopCategory", "dispalyShopList"]),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getRestaurantList(params) {
-    dispatch(actionCreators.getRestaurantList(params));
+  getShopList(params) {
+    dispatch(actionCreators.getShopList(params));
   },
-  setRestaurantList(data) {
-    dispatch(actionCreators.setRestaurantList(data));
+  setShopList(data) {
+    dispatch(actionCreators.setShopList(data));
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(FoodCategory));
+)(withRouter(ShopCategory));

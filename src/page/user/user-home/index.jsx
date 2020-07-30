@@ -18,7 +18,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-list"></use>
           </svg>
         ),
-        href: "/home",
+        href: "/order",
       },
       {
         title: "积分商城",
@@ -27,7 +27,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-jifenshangcheng"></use>
           </svg>
         ),
-        href: "/home",
+        href: "/jifenshangcheng",
       },
       {
         title: "饿了么会员卡",
@@ -36,7 +36,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-huiyuan"></use>
           </svg>
         ),
-        href: "/home",
+        href: "/vipcard",
       },
       {
         title: "服务中心",
@@ -45,7 +45,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-fuwuzhongxin"></use>
           </svg>
         ),
-        href: "/home",
+        href: "/service",
       },
       {
         title: "下载饿了么APP",
@@ -54,7 +54,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-elema-blue"></use>
           </svg>
         ),
-        href: "/home",
+        href: "/elmapp",
       },
     ];
   }
@@ -76,7 +76,10 @@ class UserHome extends PureComponent {
           midContent="我的"
         />
 
-        <Link className="main-wrapper" to="/user/login">
+        <Link
+          className="main-wrapper"
+          to={logined ? "/user/profile" : "/user/login"}
+        >
           <div className="username-info-wrapper">
             <Avatar
               size={80}

@@ -1,9 +1,9 @@
 import React, { PureComponent, Fragment } from "react";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
-import { actionCreators as foodCategoryActionCreators } from "src/page/food-category/store";
+import { actionCreators as shopCategoryActionCreators } from "src/page/shop-category/store";
 
-import RestaurantList from "src/components/restaurant-list";
+import ShopList from "src/components/shop-list";
 import { Row, Col, Cascader, Avatar, Badge, Select } from "antd";
 
 import "./style.scss";
@@ -93,12 +93,12 @@ class OptionsCascader extends React.Component {
   componentDidMount() {
     const {
       addr,
-      allRestaurantCategoryListLoading,
-      getAllRestaurantCategoriesList,
+      allShopCategoryListLoading,
+      getAllShopCategoriesList,
     } = this.props;
-    if (allRestaurantCategoryListLoading) {
+    if (allShopCategoryListLoading) {
       // 加载分类列表
-      getAllRestaurantCategoriesList();
+      getAllShopCategoriesList();
     }
   }
 
@@ -151,7 +151,7 @@ class OptionsCascader extends React.Component {
   };
 
   updateDisplayList = (params) => {
-    const { getRestaurantList, setRestaurantList } = this.props;
+    const { getShopList, setShopList } = this.props;
 
     this.setState(
       {
@@ -165,17 +165,17 @@ class OptionsCascader extends React.Component {
         // 注意setState有关的都不是同步的, 因为react会把几个setState合并一起更新, 但是
         // setState应该是比异步请求数据快的
         // 或者可以让set返回一个promise
-        setRestaurantList([]);
+        setShopList([]);
         // 再异步获取新list
-        getRestaurantList(this.state.params);
+        getShopList(this.state.params);
       }
     );
   };
 
   render() {
     let {
-      allRestaurantCategoryListLoading: loading,
-      allRestaurantCategoryList: list,
+      allShopCategoryListLoading: loading,
+      allShopCategoryList: list,
     } = this.props;
     let categoryData = []; // 传入分类Cascader 的options属性
     if (!loading) {
@@ -195,7 +195,7 @@ class OptionsCascader extends React.Component {
                 getPopupContainer={() => document.getElementById("popuparea")}
                 // 选中后,更新餐馆列表, 传入value[1], 代表第二层菜单的value
                 onChange={(value) => {
-                  this.updateDisplayList({ restaurant_category_ids: value[1] });
+                  this.updateDisplayList({ shop_category_ids: value[1] });
                 }}
                 //选中后更新分类级联菜单栏的内容, 由于传入的label是react node, 所以需要从中筛选出name
                 displayRender={(label, selectedOptions) => {
@@ -273,25 +273,22 @@ class OptionsCascader extends React.Component {
 
 const mapStateToProps = (state) => ({
   addr: state.getIn(["location", "addr"]),
-  allRestaurantCategoryListLoading: state.getIn([
+  allShopCategoryListLoading: state.getIn([
     "optionsCascader",
-    "allRestaurantCategoryListLoading",
+    "allShopCategoryListLoading",
   ]),
-  allRestaurantCategoryList: state.getIn([
-    "optionsCascader",
-    "allRestaurantCategoryList",
-  ]),
+  allShopCategoryList: state.getIn(["optionsCascader", "allShopCategoryList"]),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllRestaurantCategoriesList() {
-    dispatch(actionCreators.getAllRestaurantCategoriesList());
+  getAllShopCategoriesList() {
+    dispatch(actionCreators.getAllShopCategoriesList());
   },
-  getRestaurantList(params) {
-    dispatch(foodCategoryActionCreators.getRestaurantList(params));
+  getShopList(params) {
+    dispatch(shopCategoryActionCreators.getShopList(params));
   },
-  setRestaurantList(data) {
-    dispatch(foodCategoryActionCreators.setRestaurantList(data));
+  setShopList(data) {
+    dispatch(shopCategoryActionCreators.setShopList(data));
   },
 });
 

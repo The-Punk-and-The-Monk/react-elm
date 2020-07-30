@@ -4,7 +4,7 @@ import { Rate, Skeleton, Avatar } from "antd";
 import "./style.scss";
 
 const Item = List.Item;
-const RestaurantList = (props) => {
+const ShopList = (props) => {
   /**
    * datalist[] : 餐馆数据列表
    * title: 列表的标题
@@ -23,7 +23,7 @@ const RestaurantList = (props) => {
     displayList = dataList.map((data) => (
       <Item key={data.get("id")}>
         <div className="list-item-content-wrapper">
-          <div className="restaurant-list-item-avatar-wraper">
+          <div className="shop-list-item-avatar-wraper">
             <Avatar
               shape="square"
               size={80}
@@ -86,7 +86,7 @@ const RestaurantList = (props) => {
     ));
   }
   return (
-    <List className="restaurant-list-wrapper">
+    <List className="shop-list-wrapper">
       {title ? (
         <Item>
           <svg className="icon" aria-hidden="true">
@@ -101,4 +101,4 @@ const RestaurantList = (props) => {
   );
 };
 
-export default RestaurantList;
+export default ShopList;

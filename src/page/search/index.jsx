@@ -5,7 +5,6 @@ import Header from "src/components/header";
 import Footer from "src/components/footer";
 
 import { actionCreators } from "./store";
-import { actionCreators as footerActionCreators } from "src/components/footer/store";
 
 import "./style.scss";
 import {} from "./style";

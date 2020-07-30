@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export default class RestaurantService {
-  getHomeRestaurantCategoryList() {
+export default class ShopService {
+  getHomeShopCategoryList() {
     return axios.get("/proxyapi/v2/index_entry");
   }
 
-  getAllRestaurantCategoriesList() {
+  getAllShopCategoriesList() {
     return axios.get("/proxyapi/shopping/v2/restaurant/category");
   }
   /**
@@ -21,7 +21,7 @@ export default class RestaurantService {
   |support_ids      |N      |array |餐馆支持特权的id|
   |restaurant_category_ids      |N      |array |餐馆分类id|
     */
-  getRestaurantList({
+  getShopList({
     latitude,
     longitude,
     offset = 0,

@@ -3,27 +3,27 @@
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:14:39
  * @LastEditTime: 2020-07-28 21:55:54
- * @FilePath: /react-elm/src/page/food-category/store/actionCreators.jsx
+ * @FilePath: /react-elm/src/page/shop-category/store/actionCreators.jsx
  * @Description:
  */
 
 import * as constants from "./constants";
 import { _errTips } from "utils";
-import RestaurantService from "services/restaurant-service";
+import ShopService from "services/shop-service";
 
-const _restaurantService = new RestaurantService();
+const _shopService = new ShopService();
 
-export const setRestaurantList = (data) => ({
+export const setShopList = (data) => ({
   type: constants.CHANGE_DISPLAY_RESTAURANT_LIST,
   data: data,
 });
 
 // 获取餐馆列表
-export const getRestaurantList = (params) => {
+export const getShopList = (params) => {
   return (dispatch) => {
-    _restaurantService.getRestaurantList(params).then(
+    _shopService.getShopList(params).then(
       (res) => {
-        dispatch(setRestaurantList(res.data));
+        dispatch(setShopList(res.data));
       },
       (err) => {
         _errTips(err.message);

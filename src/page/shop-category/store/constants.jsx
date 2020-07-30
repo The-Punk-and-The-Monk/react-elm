@@ -3,7 +3,7 @@
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:14:49
  * @LastEditTime: 2020-07-28 21:53:09
- * @FilePath: /react-elm/src/page/food-category/store/constants.jsx
+ * @FilePath: /react-elm/src/page/shop-category/store/constants.jsx
  * @Description: constants
  */
 

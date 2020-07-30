@@ -14,7 +14,7 @@ import { actionCreators } from "./store";
 import { actionCreators as locationActionCreators } from "src/page/location/store";
 import Header from "src/components/header";
 import Footer from "src/components/footer";
-import RestaurantList from "src/components/restaurant-list";
+import ShopList from "src/components/shop-list";
 import { Icon, Grid } from "antd-mobile";
 import { Skeleton, Avatar, Carousel } from "antd";
 import BScroll from "better-scroll";
@@ -25,16 +25,16 @@ class Home extends PureComponent {
     console.log("home mount");
     const {
       addr,
-      homeRestaurantCategoryListLoading,
-      getHomeRestaurantCategoryList,
-      nearbyRestaurantListLoading,
-      getNearbyRestaurantList,
+      homeShopCategoryListLoading,
+      getHomeShopCategoryList,
+      nearbyShopListLoading,
+      getNearbyShopList,
     } = this.props; // 改变footer的选中标签state
-    if (homeRestaurantCategoryListLoading) {
-      getHomeRestaurantCategoryList();
+    if (homeShopCategoryListLoading) {
+      getHomeShopCategoryList();
     }
-    if (nearbyRestaurantListLoading) {
-      getNearbyRestaurantList({
+    if (nearbyShopListLoading) {
+      getNearbyShopList({
         latitude: addr.get("latitude"),
         longitude: addr.get("longitude"),
       });
@@ -44,27 +44,27 @@ class Home extends PureComponent {
   handleCategoryClick = (target, index) => {
     const { history } = this.props;
     const { text, id } = target;
-    history.push(`/food-category/${text}/${id}`);
+    history.push(`/shop-category/${text}/${id}`);
   };
 
   render() {
     const {
       addr,
       history,
-      homeRestaurantCategoryListLoading,
-      homeRestaurantCategoryList,
-      nearbyRestaurantListLoading,
-      nearbyRestaurantList,
+      homeShopCategoryListLoading,
+      homeShopCategoryList,
+      nearbyShopListLoading,
+      nearbyShopList,
     } = this.props;
     let data = [];
-    if (homeRestaurantCategoryListLoading) {
+    if (homeShopCategoryListLoading) {
       // 加载中, 给grid传入占位
       data = new Array(16).fill({
         icon: <Skeleton.Avatar />,
         text: <Skeleton title={{ width: 50 }} paragraph={{ rows: 0 }} active />,
       });
     } else {
-      data = homeRestaurantCategoryList
+      data = homeShopCategoryList
         .map((item) => ({
           id: item.get("id"),
           icon: (
@@ -119,9 +119,9 @@ class Home extends PureComponent {
                 />
               </Carousel>
               <div className="white-space"></div>
-              <RestaurantList
-                dataList={nearbyRestaurantList}
-                loading={nearbyRestaurantListLoading}
+              <ShopList
+                dataList={nearbyShopList}
+                loading={nearbyShopListLoading}
                 title="附近商家"
               />
             </div>
@@ -135,27 +135,21 @@ class Home extends PureComponent {
 
 const mapStateToProps = (state) => ({
   addr: state.getIn(["location", "addr"]),
-  homeRestaurantCategoryListLoading: state.getIn([
+  homeShopCategoryListLoading: state.getIn([
     "home",
-    "homeRestaurantCategoryListLoading",
+    "homeShopCategoryListLoading",
   ]),
-  homeRestaurantCategoryList: state.getIn([
-    "home",
-    "homeRestaurantCategoryList",
-  ]),
-  nearbyRestaurantListLoading: state.getIn([
-    "home",
-    "nearbyRestaurantListLoading",
-  ]),
-  nearbyRestaurantList: state.getIn(["home", "nearbyRestaurantList"]),
+  homeShopCategoryList: state.getIn(["home", "homeShopCategoryList"]),
+  nearbyShopListLoading: state.getIn(["home", "nearbyShopListLoading"]),
+  nearbyShopList: state.getIn(["home", "nearbyShopList"]),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getNearbyRestaurantList({ latitude, longitude }) {
-    dispatch(actionCreators.getNearbyRestaurantList({ latitude, longitude }));
+  getNearbyShopList({ latitude, longitude }) {
+    dispatch(actionCreators.getNearbyShopList({ latitude, longitude }));
   },
-  getHomeRestaurantCategoryList() {
-    dispatch(actionCreators.getHomeRestaurantCategoryList());
+  getHomeShopCategoryList() {
+    dispatch(actionCreators.getHomeShopCategoryList());
   },
   getAddr() {
     dispatch(locationActionCreators.getAddr());

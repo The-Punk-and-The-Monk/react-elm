@@ -11,24 +11,24 @@ import { fromJS } from "immutable";
 import * as constants from "./constants";
 
 const defaultState = fromJS({
-  homeRestaurantCategoryListLoading: true,
-  homeRestaurantCategoryList: [], // 首页头部餐馆分类列表
-  nearbyRestaurantListLoading: true,
-  nearbyRestaurantList: [], // 附近餐馆列表
+  homeShopCategoryListLoading: true,
+  homeShopCategoryList: [], // 首页头部餐馆分类列表
+  nearbyShopListLoading: true,
+  nearbyShopList: [], // 附近餐馆列表
 });
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case constants.CHANGE_HOME_RESTAURANT_CATEGORY_LIST: {
       return state.merge({
-        homeRestaurantCategoryList: fromJS(action.data),
-        homeRestaurantCategoryListLoading: false,
+        homeShopCategoryList: fromJS(action.data),
+        homeShopCategoryListLoading: false,
       });
     }
     case constants.CHANGE_NEARBY_RESTAURANT_LIST: {
       return state.merge({
-        nearbyRestaurantList: fromJS(action.data),
-        nearbyRestaurantListLoading: false,
+        nearbyShopList: fromJS(action.data),
+        nearbyShopListLoading: false,
       });
     }
     default:

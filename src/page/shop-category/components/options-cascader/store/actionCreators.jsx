@@ -3,20 +3,20 @@
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:14:39
  * @LastEditTime: 2020-07-28 21:41:07
- * @FilePath: /react-elm/src/page/food-category/components/options-cascader/store/actionCreators.jsx
+ * @FilePath: /react-elm/src/page/shop-category/components/options-cascader/store/actionCreators.jsx
  * @Description:
  */
 
 import * as constants from "./constants";
 import { _errTips } from "utils";
-import RestaurantService from "services/restaurant-service";
+import ShopService from "services/shop-service";
 
-const _restaurantService = new RestaurantService();
+const _shopService = new ShopService();
 
 // 获取所有餐馆分类列表
-export const getAllRestaurantCategoriesList = () => {
+export const getAllShopCategoriesList = () => {
   return (dispatch) => {
-    _restaurantService.getAllRestaurantCategoriesList().then(
+    _shopService.getAllShopCategoriesList().then(
       (res) => {
         dispatch({
           type: constants.CHANGE_ALL_RESTAURANT_CATEGORY_LIST,

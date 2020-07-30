@@ -1,4 +1,4 @@
-.restaurant-list-wrapper {
+.shop-list-wrapper {
   .list-title {
     font-size: 14px;
     color: #999;
@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
 
-    .restaurant-list-item-avatar-wraper {
+    .shop-list-item-avatar-wraper {
       margin-right: 5px;
 
       img {
@@ -20,12 +20,11 @@
         // height: 5rem;
         // margin-right: 0.4rem;
       }
-
     }
 
     div.am-card.am-card-full {
       &::before {
-        height: 0px
+        height: 0px;
       }
 
       &::after {
@@ -80,7 +79,7 @@
       span {
         font-size: 12px;
 
-        &:nth-child(2n+1) {
+        &:nth-child(2n + 1) {
           color: #fff;
           background: #3190e8;
           border: 1px solid #3190e8;
