@@ -1,5 +1,5 @@
 .form-wrapper {
-  margin-top: 45px; // header height * 2
+  margin-top: $header-height; // header height
   padding-top: 20px;
   > input {
     font-size: 20px;

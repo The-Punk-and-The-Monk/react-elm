@@ -1,6 +1,6 @@
 .options-cascader-wrapper {
   position: fixed;
-  top: 45px; // header 的高度
+  top: $header-height; // header 的高度
   width: 100%;
   z-index: 100;
   .ant-input:placeholder-shown {

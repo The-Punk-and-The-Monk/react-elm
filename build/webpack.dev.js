@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:36:52
- * @LastEditTime: 2020-07-28 19:23:43
+ * @LastEditTime: 2020-07-31 14:33:29
  * @FilePath: /react-elm/build/webpack.dev.js
  * @Description:
  */
@@ -54,7 +54,17 @@ module.exports = merge(webpackCommonConf, {
       // scss
       {
         test: /\.scss$/,
-        loader: ["style-loader", "css-loader", "sass-loader"],
+        loader: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: "src/vars.scss",
+            },
+          },
+        ],
       },
     ],
   },
@@ -67,6 +77,7 @@ module.exports = merge(webpackCommonConf, {
     // 热更新
     // new HotModuleReplacementPlugin()
   ],
+  devtool: "source-map",
   devServer: {
     port: 8787,
     progress: true,

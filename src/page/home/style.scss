@@ -5,8 +5,8 @@
   }
 
   .home-content-wrapper {
-    margin-top: 45px; // header height
-    margin-bottom: 55px; // footer height
+    margin-top: $header-height; // header height
+    margin-bottom: $footer-height; // footer height
     .ant-carousel .slick-dots li button {
       background: #108ee9;
     }

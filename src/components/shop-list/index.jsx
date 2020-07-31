@@ -15,6 +15,14 @@ const ShopList = (props) => {
   const history = useHistory();
   const { dataList = [], title = "", loading = true, fakeListLen = 20 } = props;
   let displayList = null;
+
+  function handleShopItemClick(e) {
+    const item = e.target.closest(".shop-list-item");
+    if (item) {
+      history.push(`/shop/${item.dataset.id}`);
+    }
+  }
+
   if (loading) {
     displayList = new Array(fakeListLen).fill(0).map((v, i) => (
       <Item key={`fakelist-${i}`}>
@@ -25,7 +33,8 @@ const ShopList = (props) => {
     displayList = dataList.map((data) => (
       <Item
         key={data.get("id")}
-        onClick={() => history.push(`/shop/${data.get("id")}`)}
+        className="shop-list-item"
+        data-id={data.get("id")}
       >
         <div className="list-item-content-wrapper">
           <div className="shop-list-item-avatar-wraper">
@@ -91,7 +100,7 @@ const ShopList = (props) => {
     ));
   }
   return (
-    <List className="shop-list-wrapper">
+    <List className="shop-list-wrapper" onClick={handleShopItemClick}>
       {title ? (
         <Item>
           <svg className="icon" aria-hidden="true">

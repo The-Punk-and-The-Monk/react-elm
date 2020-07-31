@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-27 10:14:49
- * @LastEditTime: 2020-07-29 21:11:37
+ * @LastEditTime: 2020-07-31 22:51:53
  * @FilePath: /react-elm/src/page/home/index.jsx
  * @Description:
  */
@@ -98,7 +98,11 @@ class Home extends PureComponent {
               </span>
             }
             rightContent={
-              <svg className="icon" aria-hidden="true">
+              <svg
+                className="icon"
+                aria-hidden="true"
+                onClick={() => history.push("/user")}
+              >
                 <use xlinkHref="#icon-wode-white-copy"></use>
               </svg>
             }

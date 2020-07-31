@@ -2,34 +2,28 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:37:15
- * @LastEditTime: 2020-07-25 18:57:48
+ * @LastEditTime: 2020-07-31 11:26:25
  * @FilePath: /react-elm/build/webpack.prod.js
  * @Description: prod
  */
 
-const webpack = require('webpack');
-const webpackCommonConf = require('./webpack.common.js');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const webpack = require("webpack");
+const webpackCommonConf = require("./webpack.common.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
 
 // const HappyPack = require('happypack')
 
-const {
-  merge
-} = require('webpack-merge');
-const {
-  srcPath,
-  distPath
-} = require('./paths.jsx');
+const { merge } = require("webpack-merge");
+const { srcPath, distPath } = require("./paths.jsx");
 
 module.exports = merge(webpackCommonConf, {
-  mode: 'production',
+  mode: "production",
   output: {
-
-    filename: '[name].[contentHash:8].js', // name 即多入口是entry的key, 加上8字符哈希戳
+    filename: "[name].[contentHash:8].js", // name 即多入口是entry的key, 加上8字符哈希戳
     path: distPath,
     // publicPath: "http://cdn.abc.com", // 修改所有静态文件 url 的前缀
   },
@@ -47,7 +41,7 @@ module.exports = merge(webpackCommonConf, {
       // js,jsx文件处理
       {
         test: /\.(js|jsx)$/,
-        loader: ['babel-loader?cacheDirectory'],
+        loader: ["babel-loader?cacheDirectory"],
         include: srcPath,
       },
 
@@ -55,19 +49,19 @@ module.exports = merge(webpackCommonConf, {
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         use: {
-          loader: 'url-loader',
+          loader: "url-loader",
           options: {
             // 小于 5kb 的图片用 base64 格式产出
             // 否则，依然延用 file-loader 的形式，产出 url 格式
             limit: 5 * 1024,
 
             // 打包到img目录下
-            outputPath: '/img/',
+            outputPath: "/img/",
 
             // 设置图片的 cdn 地址（也可以统一在外面的 output 中设置，那将作用于所有静态资源）
             // publicPath: 'http://cdn.abc.com'
-          }
-        }
+          },
+        },
       },
 
       // 抽离css
@@ -75,30 +69,36 @@ module.exports = merge(webpackCommonConf, {
         test: /\.css$/,
         loader: [
           MiniCssExtractPlugin.loader, // 不再用style-loader
-          'css-loader',
-        ]
+          "css-loader",
+        ],
       },
       // 抽离scss
       {
         test: /\.scss$/,
         loader: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ]
-      }
-    ]
+          "css-loader",
+          "sass-loader",
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: "src/vars.scss",
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       // window.ENV = 'production'
-      ENV: JSON.stringify('production')
+      ENV: JSON.stringify("production"),
     }),
 
     // 抽离 css
     new MiniCssExtractPlugin({
-      filename: 'css/main.[contentHash:8].css'
+      filename: "css/main.[contentHash:8].css",
     }),
 
     // 使用IgnorePlugin忽略某个目录, 如 忽略 moment 下的 /locale 目录
@@ -127,9 +127,9 @@ module.exports = merge(webpackCommonConf, {
           collapse_vars: true,
           // 提取出出现多次但是没有定义成变量去引用的静态值
           reduce_vars: true,
-        }
-      }
-    })
+        },
+      },
+    }),
   ],
 
   optimization: {
@@ -143,27 +143,27 @@ module.exports = merge(webpackCommonConf, {
         async 异步chunk，只对异步导入的文件处理
         all 全部chunk
       */
-      chunks: 'all',
+      chunks: "all",
 
       // 缓存分组
       cacheGroups: {
         // 第三方模块
         vendor: {
-          name: 'vendor', // chunk 名称
+          name: "vendor", // chunk 名称
           priority: 1, // 权限最高, 优先抽离, 重要
           test: /node_modules/,
           minSize: 3 * 1024, // 太小的就算了
-          minChunks: 1 // 最少复用过几次
+          minChunks: 1, // 最少复用过几次
         },
 
         // 公共模块
         common: {
-          name: 'common',
+          name: "common",
           priority: 0,
           minSize: 3 * 1024,
           minChunks: 2, // 公共模块最少复用过几次
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });

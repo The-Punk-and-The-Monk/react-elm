@@ -39,7 +39,7 @@ class ChooseCity extends PureComponent {
   };
 
   render() {
-    const { city, hotCityList, allCityMap } = this.props;
+    const { city, hotCityList, allCityMap, history } = this.props;
 
     const hotCityData = hotCityList.toJS();
 
@@ -63,11 +63,10 @@ class ChooseCity extends PureComponent {
               data={item.citys}
               columnNum={4}
               square={false}
+              onClick={this.handleClick}
               renderItem={(city) => (
                 <div className="grid-item">
-                  <span onClick={() => this.handleClick(city)}>
-                    {city.name}
-                  </span>
+                  <span>{city.name}</span>
                 </div>
               )}
             />
@@ -77,7 +76,11 @@ class ChooseCity extends PureComponent {
 
     return (
       <Fragment>
-        <Header leftContent="ele.me" rightContent="登录|注册" />
+        <Header
+          leftContent={
+            <span onClick={() => history.push("/home")}>ele.me</span>
+          }
+        />
         <div className="choosecity-wrapper">
           <List className="my-list">
             <Item
@@ -97,9 +100,10 @@ class ChooseCity extends PureComponent {
             data={hotCityData}
             columnNum={4}
             square={false}
+            onClick={this.handleClick}
             renderItem={(city) => (
               <div className="grid-item">
-                <span onClick={() => this.handleClick(city)}>{city.name}</span>
+                <span>{city.name}</span>
               </div>
             )}
           />
