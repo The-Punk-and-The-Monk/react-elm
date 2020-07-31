@@ -20,9 +20,12 @@ const ShopHomeHeader = (props) => {
               backgroundImage: `url("${"/img/" + shop.get("image_path")}")`,
             }}
           ></div>
-          <Row align="middle">
+          <Row align="middle" gutter={10}>
             <Col span={4}>
-              <Avatar src={"/img/" + shop.get("image_path")} size={80} />
+              <Avatar
+                src={"/img/" + shop.get("image_path")}
+                className="shop-avatar"
+              />
             </Col>
             <Col span={18}>
               <div>

@@ -1,0 +1,94 @@
+.food-list-wrapper {
+  width: calc(100% - #{$shop-home-menu-sider-width});
+  display: inline-block;
+  .list-header-observe-area {
+    position: fixed;
+    top: $shop-home-nav-height - 2px;
+    width: 100%;
+    height: 42px; // list header 的height
+    z-index: 100;
+    background: blue;
+  }
+  .food-list-title {
+    font-size: 16px;
+  }
+  .ant-list-header {
+    position: sticky;
+    top: $shop-home-nav-height - 2px; // - 2 不知道为何有个缝隙, 也不是margin, 顺便跟menu-sider顶部对齐
+    z-index: 50;
+    background: #e6f7ff;
+    padding: 8px;
+  }
+  .food-list-title-desc {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #aaa;
+  }
+  .food-avatar {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  .ant-list-item {
+    background: white;
+    .ant-row {
+      width: 100%;
+    }
+    .ant-avatar {
+    }
+    h1 {
+      font-size: 1.5em;
+      margin: 0.17em 0;
+    }
+    .description {
+      color: #aaa;
+      margin-bottom: 0.3em;
+    }
+  }
+  .price {
+    color: orange;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .jia-jian {
+    text-align: right;
+    font-size: 2em;
+    .jia {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+  .spec-span {
+    color: #fff;
+    font-size: 18px;
+    font-weight: lighter;
+    background: #3190e8;
+    border-radius: 8px;
+    padding: 5px;
+    margin-right: 10px;
+    position: relative;
+    top: -4px;
+  }
+  .sticky-section {
+    position: relative;
+  }
+  .sticky-sentinel-header {
+    position: absolute;
+    top: -($shop-home-nav-height - 2px);
+    height: $shop-home-nav-height - 2px;
+    visibility: hidden;
+    // background: rgba(197, 197, 113, 0.5);
+    z-index: 10000;
+    left: 0;
+    right: 0;
+  }
+  .sticky-sentinel-footer {
+    position: absolute;
+    bottom: 0;
+    height: $shop-home-nav-height - 2px + 42px; // 42 为list-header的高度
+    visibility: hidden;
+    // background: rgba(184, 82, 82, 0.5);
+    z-index: 10000;
+    left: 0;
+    right: 0;
+  }
+}

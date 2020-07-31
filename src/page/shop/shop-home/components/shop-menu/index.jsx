@@ -13,17 +13,23 @@ import {
 import { connect } from "react-redux";
 import { actionCreators as shopActionCreators } from "src/page/shop/store";
 import FoodList from "./components/food-list";
+import MenuSider from "./components/menu-sider";
+import observeStickySentinelChange from "./sticky-event.jsx";
 import "./style.scss";
 
 class ShopMenu extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedMenuIdx: 0,
+      menuSelectedFoodCategoryIdx: 0,
       showSpecModal: false,
-      foodItem: null,
+      foodItem: null, // modal 的foodItem
       specModalSelectedFood: null,
     };
+    this.listHeaderRefs = []; // menuIdx => listheaderref
+    this.menuItemRefs = []; // menuIdx => menuitemref
+    this.ios = [];
+    this.stickEventListening = false;
   }
 
   componentDidMount() {
@@ -32,6 +38,37 @@ class ShopMenu extends React.PureComponent {
     const { getShopMenu } = this.props;
     getShopMenu(id);
   }
+
+  componentDidUpdate() {
+    const { menu } = this.props;
+    const menuLoading = menu.size === 0;
+    if (!menuLoading && !this.stickEventListening) {
+      const container = document.querySelector(".food-list-wrapper");
+      this.ios = observeStickySentinelChange(container);
+      document.addEventListener(
+        "sticky-event",
+        this.handleStickyListHeaderChange
+      );
+      this.stickEventListening = true;
+    }
+  }
+
+  compoenntWillUnmount() {
+    if (this.ios.length) {
+      this.ios.forEach((io) => io.disconnect());
+    }
+  }
+
+  handleStickyListHeaderChange = (stickyEvent) => {
+    if (stickyEvent.detail.sticky) {
+      const idx = parseInt(stickyEvent.detail.target.dataset.idx);
+      // console.log("fired idx", idx);
+
+      this.setState({
+        menuSelectedFoodCategoryIdx: idx,
+      });
+    }
+  };
 
   showSpecModal = (foodItem) => {
     this.setState({
@@ -70,62 +107,31 @@ class ShopMenu extends React.PureComponent {
       decreaseFoodFromCart,
     } = this.props;
     const menuLoading = menu.size === 0;
-    const { selectedMenuIdx } = this.state;
+    const { menuSelectedFoodCategoryIdx } = this.state;
 
     if (menuLoading) {
       return <Skeleton active paragraph={{ rows: 20 }} />;
     } else {
       return (
         <div className="shop-menu-wrapper">
-          <Layout>
-            <Layout.Sider width={100}>
-              <Menu
-                mode="vertical"
-                defaultSelectedKeys={[selectedMenuIdx + ""]}
-              >
-                {menu.map((foodCategory, idx) => {
-                  // foodCategory => foodCategory
-                  return (
-                    <Menu.Item key={idx + ""}>
-                      <div>
-                        <span>{foodCategory.get("name")}</span>
-                        {/* 显示该category下在购物车中的数量 */}
-
-                        {shoppingCart.getIn([
-                          "" + shopId,
-                          "" + foodCategory.get("id"),
-                          "num",
-                        ]) ? (
-                          <span className="category-cnt">
-                            {shoppingCart.getIn([
-                              "" + shopId,
-                              "" + foodCategory.get("id"),
-                              "num",
-                            ])}
-                          </span>
-                        ) : null}
-                      </div>
-                    </Menu.Item>
-                  );
-                })}
-              </Menu>
-            </Layout.Sider>
-            <Layout.Content>
-              <div className="food-list-wrapper">
-                <FoodList
-                  {...{
-                    shopId,
-                    menu,
-                    shoppingCart,
-                    addFoodToCart,
-                    decreaseFoodFromCart,
-                    showSpecModal: this.showSpecModal,
-                  }}
-                />
-              </div>
-            </Layout.Content>
-          </Layout>
-
+          <MenuSider
+            {...{
+              shopId,
+              menu,
+              shoppingCart,
+              menuSelectedFoodCategoryIdx,
+            }}
+          />
+          <FoodList
+            {...{
+              shopId,
+              menu,
+              shoppingCart,
+              addFoodToCart,
+              decreaseFoodFromCart,
+              showSpecModal: this.showSpecModal,
+            }}
+          />
           <div id="spec-modal-container"></div>
           {this.state.showSpecModal ? (
             <Modal
@@ -178,11 +184,11 @@ const mapDispatchToProps = (dispatch) => ({
   getShopMenu(shopId) {
     return dispatch(shopActionCreators.getShopMenu(shopId));
   },
-  addFoodToCart(obj) {
-    dispatch(shopActionCreators.addFoodToCart(obj));
+  addFoodToCart(params) {
+    dispatch(shopActionCreators.addFoodToCart(params));
   },
-  decreaseFoodFromCart(obj) {
-    dispatch(shopActionCreators.decreaseFoodFromCart(obj));
+  decreaseFoodFromCart(params) {
+    dispatch(shopActionCreators.decreaseFoodFromCart(params));
   },
 });
 

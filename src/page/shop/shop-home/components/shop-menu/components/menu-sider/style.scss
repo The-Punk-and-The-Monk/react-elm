@@ -1,0 +1,16 @@
+.menu-sider-wrapper {
+  width: $shop-home-menu-sider-width;
+  float: left;
+  position: sticky;
+  top: $shop-home-nav-height - 2; // 跟food-list-header顶部对齐
+  height: calc(100vh - #{$shop-home-nav-height});
+  overflow: scroll;
+  .ant-menu {
+    .ant-menu-item {
+      height: 42px;
+      line-height: 42px;
+      margin-top: 0;
+      font-size: 16px;
+    }
+  }
+}

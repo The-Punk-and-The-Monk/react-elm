@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:15:06
- * @LastEditTime: 2020-07-31 01:00:18
+ * @LastEditTime: 2020-07-31 09:46:11
  * @FilePath: /react-elm/src/page/shop/store/reducer.jsx
  * @Description:
  */
@@ -13,19 +13,19 @@ import * as constants from "./constants";
 /**
  * shopingCart: {
  *  shopId: {
- *        foodId: {
- *          shopId,
- *          foodId,
- *          foodCategoryId,
- *          itemId,
- *          name,
- *          num,
- *          packing_fee,
- *          price,
- *          sku_id,
- *          specs,
- *          stock,
- *        }
+ *    foodId: {
+ *      shopId,
+ *      foodId,
+ *      foodCategoryId,
+ *      itemId,
+ *      name,
+ *      num,
+ *      packing_fee,
+ *      price,
+ *      sku_id,
+ *      specs,
+ *      stock,
+ *    }
  *    itemId: {
  *      num
  *    },
