@@ -1,9 +1,8 @@
-import React, { PureComponent, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators } from "./store";
+import React from "react";
+
 import { Route, Switch, Redirect } from "react-router-dom";
-import ChooseCity from "./chooseCity/loadable.jsx";
-import ChooseAddr from "./chooseAddr/loadable.jsx";
+import ChooseCity from "./chooseCity";
+import ChooseAddr from "./chooseAddr";
 
 const Location = () => {
   return (

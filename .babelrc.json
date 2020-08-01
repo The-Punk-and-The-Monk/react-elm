@@ -27,6 +27,7 @@
         "style": "css"
       }
     ],
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    "syntax-dynamic-import"
   ]
 }

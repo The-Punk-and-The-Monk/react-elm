@@ -3,7 +3,7 @@ import axios from "axios";
 export default class User {
   // 获取验证码
   getCaptcha() {
-    return axios.post("/proxyapi//v1/captchas");
+    return axios.post("/proxyapi/v1/captchas");
   }
 
   /**

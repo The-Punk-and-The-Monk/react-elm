@@ -9,7 +9,7 @@ import { actionCreators as shopActionCreators } from "../store";
 
 import ShopHomeHeader from "./components/shop-home-header";
 import ShopMenu from "./components/shop-menu";
-import ShopRating from "./components/shop-rating/loadable.jsx";
+import ShopRating from "./components/shop-rating";
 
 import "./style.scss";
 
