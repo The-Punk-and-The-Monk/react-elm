@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:37:15
- * @LastEditTime: 2020-07-31 11:26:25
+ * @LastEditTime: 2020-08-02 00:07:52
  * @FilePath: /react-elm/build/webpack.prod.js
  * @Description: prod
  */
@@ -25,7 +25,7 @@ module.exports = merge(webpackCommonConf, {
   output: {
     filename: "[name].[contentHash:8].js", // name 即多入口是entry的key, 加上8字符哈希戳
     path: distPath,
-    // publicPath: "http://cdn.abc.com", // 修改所有静态文件 url 的前缀
+    // publicPath: "//localhost:8989", // 修改所有静态文件 url 的前缀
   },
   module: {
     rules: [

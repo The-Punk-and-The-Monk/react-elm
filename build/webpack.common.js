@@ -2,15 +2,13 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:36:42
- * @LastEditTime: 2020-07-27 11:47:50
+ * @LastEditTime: 2020-08-01 22:42:35
  * @FilePath: /react-elm/build/webpack.common.js
  * @Description:
  */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {
-  srcPath
-} = require("./paths.jsx");
+const { srcPath } = require("./paths.jsx");
 
 module.exports = {
   entry: {
@@ -33,7 +31,7 @@ module.exports = {
       template: path.join(srcPath, "index.html"),
       filename: "index.html",
       favicon: "./favicon.ico",
-      chunks: ["index", "vendor", "common"],
+      // chunks: ["index", "vendor", "common"],
     }),
     // new HtmlWebpackPlugin({
     //   template: path.join(srcPath, 'other.html'),

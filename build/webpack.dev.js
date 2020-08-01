@@ -102,7 +102,7 @@ module.exports = merge(webpackCommonConf, {
         changeOrigin: true,
       },
       "/img": {
-        target: "http://elm.cangdu.org",
+        target: "https://elm.cangdu.org",
         secure: false,
         changeOrigin: true,
       },
