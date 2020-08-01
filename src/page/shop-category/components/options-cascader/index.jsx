@@ -18,6 +18,7 @@ class OptionsCascader extends React.Component {
         longitude: addr.get("longitude"),
         latitude: addr.get("latitude"),
       },
+      popupAreaVisible: false,
     };
 
     this.orderData = [
@@ -150,6 +151,7 @@ class OptionsCascader extends React.Component {
     return curData;
   };
 
+  // 选项改变, 更新list
   updateDisplayList = (params) => {
     const { getShopList, setShopList } = this.props;
 
@@ -172,6 +174,13 @@ class OptionsCascader extends React.Component {
     );
   };
 
+  // 如名
+  switchPopupAreaVisibility = () => {
+    this.setState({
+      popupAreaVisible: !this.state.popupAreaVisible,
+    });
+  };
+
   render() {
     let {
       allShopCategoryListLoading: loading,
@@ -184,15 +193,20 @@ class OptionsCascader extends React.Component {
 
     return (
       <div>
-        <div id="popuparea" />
+        <div
+          id="popuparea"
+          className={this.state.popupAreaVisible ? "visible" : ""}
+        />
         <div className="options-cascader-wrapper">
           <Row>
+            {/* 分类 */}
             <Col span={8}>
               <Cascader
                 placeholder="分类"
                 disabled={loading}
                 options={categoryData}
                 getPopupContainer={() => document.getElementById("popuparea")}
+                onPopupVisibleChange={this.switchPopupAreaVisibility}
                 // 选中后,更新餐馆列表, 传入value[1], 代表第二层菜单的value
                 onChange={(value) => {
                   this.updateDisplayList({ shop_category_ids: value[1] });
@@ -208,12 +222,15 @@ class OptionsCascader extends React.Component {
                 popupClassName="category-popup"
               />
             </Col>
+
+            {/* 排序 */}
             <Col span={8}>
               <Cascader
                 placeholder="排序"
                 disabled={loading}
                 options={this.orderData}
                 getPopupContainer={() => document.getElementById("popuparea")}
+                onPopupVisibleChange={this.switchPopupAreaVisibility}
                 popupClassName="order-popup"
                 onChange={(value) => {
                   this.updateDisplayList({ order_by: value[0] });
@@ -227,11 +244,14 @@ class OptionsCascader extends React.Component {
                 }}
               />
             </Col>
+
+            {/* 筛选 */}
             <Col span={8}>
               <Select
                 className="select-header"
                 defaultValue={"筛选"}
                 getPopupContainer={() => document.getElementById("popuparea")}
+                onDropdownVisibleChange={this.switchPopupAreaVisibility}
                 dropdownClassName="select-dropdown"
                 dropdownAlign={{
                   points: ["tr", "br"],

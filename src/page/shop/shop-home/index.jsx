@@ -1,12 +1,16 @@
 import React, { PureComponent, Fragment } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { actionCreators as shopActionCreators } from "../store";
-import { Row, Col, Avatar, Skeleton } from "antd";
-import ShopHomeHeader from "./components/shop-home-header";
+
 import { Menu } from "antd";
+import { Row, Col, Avatar, Skeleton } from "antd";
+
+import { actionCreators as shopActionCreators } from "../store";
+
+import ShopHomeHeader from "./components/shop-home-header";
 import ShopMenu from "./components/shop-menu";
-import ShopRating from "./components/shop-rating";
+import ShopRating from "./components/shop-rating/loadable.jsx";
+
 import "./style.scss";
 
 class ShopHome extends PureComponent {

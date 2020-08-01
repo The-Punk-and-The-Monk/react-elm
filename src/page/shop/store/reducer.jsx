@@ -116,7 +116,9 @@ export default (state = defaultState, action) => {
       if (shoppingCart[shopId][foodCategoryId].num === 0) {
         delete shoppingCart[shopId][foodCategoryId];
       }
-
+      if (Object.keys(shoppingCart[shopId]).length === 0) {
+        delete shoppingCart[shopId];
+      }
       return state.set("shoppingCart", fromJS(shoppingCart));
     }
     case constants.EMPTY_SHOP_CART: {

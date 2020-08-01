@@ -1,11 +1,11 @@
-import React from 'react';
-import Loadable from 'react-loadable';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import Loadable from "react-loadable";
+import Loading from "src/components/loading";
 
 const LoadableComponent = Loadable({
-  loader: () => import('./'),
-  loading() {
-    return <div>正在加载</div>;
-  }
+  loader: () => import("./"),
+  loading: Loading,
 });
 
-export default () => <LoadableComponent/>;
+export default () => <LoadableComponent />;

@@ -18,11 +18,11 @@ import {} from "./style";
 
 class User extends PureComponent {
   render() {
-    const { path } = this.props.match;
+    // const { path } = this.props.match;
     return (
       <Switch>
-        <Route path={`${path}/login`} component={Login} />
-        <Route path={`${path}`} component={UserHome} />
+        <Route path={`/user/login`} component={Login} />
+        <Route path={`/user`} component={UserHome} />
       </Switch>
     );
   }

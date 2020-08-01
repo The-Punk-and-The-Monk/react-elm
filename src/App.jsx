@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-07-31 11:11:02
+ * @LastEditTime: 2020-08-01 17:21:35
  * @FilePath: /react-elm/src/App.jsx
  * @Description: entry
  */
@@ -19,12 +19,12 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Home from "src/page/home/loadable.jsx";
-import ShopCategory from "src/page/shop-category";
+import ShopCategory from "src/page/shop-category/loadable.jsx";
 import LocalStorageLoader from "./components/localstorage-loader";
-import Location from "./page/location";
-import Search from "./page/search";
-import User from "./page/user";
-import Shop from "./page/shop";
+import Location from "./page/location/loadable.jsx";
+import Search from "./page/search/loadable.jsx";
+import User from "./page/user/loadable.jsx";
+import Shop from "./page/shop/loadable.jsx";
 
 import "./reset.css";
 import "antd/dist/antd.css";

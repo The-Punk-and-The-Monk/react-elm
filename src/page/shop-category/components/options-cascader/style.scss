@@ -12,6 +12,12 @@
   .ant-cascader-picker-label {
     text-align: center;
   }
+  .ant-cascader-picker {
+    width: 100%;
+  }
+  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: 100%;
+  }
 }
 
 #popuparea {
@@ -21,6 +27,10 @@
   bottom: 0;
   background: transparent;
   width: 100%;
+  visibility: hidden;
+  &.visible {
+    visibility: visible;
+  }
 }
 
 .category-popup {

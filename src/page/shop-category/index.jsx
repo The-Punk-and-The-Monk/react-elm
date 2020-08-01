@@ -13,12 +13,7 @@ class ShopCategory extends PureComponent {
   componentDidMount() {
     console.log("shopcategory mount");
     const { id } = this.props.match.params;
-    const {
-      addr,
-      dispalyShopListLoading,
-      getShopList,
-      setShopList,
-    } = this.props;
+    const { addr, getShopList, setShopList } = this.props;
 
     // 每次进入页面重新加载数据
     setShopList([]);

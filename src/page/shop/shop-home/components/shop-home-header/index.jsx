@@ -1,10 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import { Row, Col, Avatar, Skeleton } from "antd";
+
 import "./style.scss";
 
 const ShopHomeHeader = (props) => {
   const { shop } = props;
   const shopLoading = shop.size === 0;
+  const history = useHistory();
   return (
     <Skeleton
       avatar={{ size: 30 }}
@@ -21,13 +25,20 @@ const ShopHomeHeader = (props) => {
             }}
           ></div>
           <Row align="middle" gutter={10}>
+            <Col span={2}>
+              <div className="back-arrow" onClick={() => history.go(-1)}>
+                <svg className="icon" aria-hidden="true">
+                  <use xlinkHref="#icon-zuojiantou"></use>
+                </svg>
+              </div>
+            </Col>
             <Col span={4}>
               <Avatar
                 src={"/img/" + shop.get("image_path")}
                 className="shop-avatar"
               />
             </Col>
-            <Col span={18}>
+            <Col span={16}>
               <div>
                 <h1>{shop.get("name")}</h1>
                 <p>
@@ -48,10 +59,10 @@ const ShopHomeHeader = (props) => {
               </div>
             </Col>
           </Row>
-          <Row align="middle">
+          <Row align="middle" gutter={10}>
             <Col span={18}>
               {shop.get("activities").size ? (
-                <p>
+                <p className="activities-p">
                   <span
                     className="activities-icon"
                     style={{
