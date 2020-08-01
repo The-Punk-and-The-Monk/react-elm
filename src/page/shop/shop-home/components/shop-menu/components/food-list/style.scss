@@ -1,6 +1,7 @@
 .food-list-wrapper {
   width: calc(100% - #{$shop-home-menu-sider-width});
   display: inline-block;
+  padding-bottom: $shop-home-menu-footer-height;
   .list-header-observe-area {
     position: fixed;
     top: $shop-home-nav-height - 2px;

@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Avatar,
-  Skeleton,
-  Layout,
-  Menu,
-  List,
-  Modal,
-  Radio,
-  message,
-} from "antd";
+import { Row, Col, Avatar, List, message } from "antd";
 import "./style.scss";
 
 const FoodList = (props) => {
@@ -21,7 +10,6 @@ const FoodList = (props) => {
     addFoodToCart,
     showSpecModal,
     decreaseFoodFromCart,
-    listHeaderRefs,
   } = props;
 
   function handleSubClick(foodItem) {
@@ -116,8 +104,12 @@ const FoodList = (props) => {
                             "" + shopId,
                             "" + foodItem.get("item_id"),
                           ]) ? (
-                            <span onClick={() => handleSubClick(foodItem)}>
-                              <svg className="icon" aria-hidden="true">
+                            <span>
+                              <svg
+                                className="icon"
+                                aria-hidden="true"
+                                onClick={() => handleSubClick(foodItem)}
+                              >
                                 <use xlinkHref="#icon-jianhao"></use>
                               </svg>
                               <span className="cart-cnt">

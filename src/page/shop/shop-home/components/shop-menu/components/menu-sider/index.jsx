@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Avatar,
-  Skeleton,
-  Layout,
-  Menu,
-  List,
-  Modal,
-  Radio,
-  message,
-} from "antd";
+import { Menu } from "antd";
+
 import "./style.scss";
 
 const MenuSider = (props) => {
@@ -20,6 +10,7 @@ const MenuSider = (props) => {
     shoppingCart,
     menuSelectedFoodCategoryIdx,
     menuItemRefs,
+    handleMenuSiderClick,
   } = props;
   return (
     <div className="menu-sider-wrapper">
@@ -27,11 +18,17 @@ const MenuSider = (props) => {
         mode="vertical"
         defaultSelectedKeys={["" + 0]}
         selectedKeys={["" + menuSelectedFoodCategoryIdx]}
+        onClick={handleMenuSiderClick}
       >
         {menu.map((foodCategory, idx) => {
           // foodCategory => foodCategory
           return (
-            <Menu.Item key={"" + idx}>
+            <Menu.Item
+              key={"" + idx}
+              className={
+                idx === menuSelectedFoodCategoryIdx ? "custom-selected" : ""
+              }
+            >
               <div>
                 <span>{foodCategory.get("name")}</span>
                 {/* 显示该category下在购物车中的数量 */}

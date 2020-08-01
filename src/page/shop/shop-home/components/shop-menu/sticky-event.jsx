@@ -1,10 +1,13 @@
-export default function observeStickySentinelChange(container) {
-  const headerIo = observeSentinelHeader(container);
+export default function observeStickySentinelChange(
+  container,
+  listSentinelHeaderRefs
+) {
+  const headerIo = observeSentinelHeader(container, listSentinelHeaderRefs);
   const footerIo = observeSentinelFooter(container);
   return [headerIo, footerIo];
 }
 
-function observeSentinelHeader(container) {
+function observeSentinelHeader(container, listSentinelHeaderRefs) {
   const io = new IntersectionObserver(
     (entries, observer) => {
       // 组件卸载时, 即使在will unmount中调用io.disconnect , 某个地方也还是会触发回调函数引起错误
@@ -31,7 +34,10 @@ function observeSentinelHeader(container) {
     }
   );
   const stickyHeaders = addStickySentinel(container, "sticky-sentinel-header");
-  stickyHeaders.forEach((node) => io.observe(node));
+  stickyHeaders.forEach((node) => {
+    listSentinelHeaderRefs.push(node);
+    io.observe(node);
+  });
   return io;
 }
 

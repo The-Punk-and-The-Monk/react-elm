@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import {
   Row,
   Col,
@@ -10,11 +12,15 @@ import {
   Modal,
   Radio,
 } from "antd";
-import { connect } from "react-redux";
+
 import { actionCreators as shopActionCreators } from "src/page/shop/store";
+
 import FoodList from "./components/food-list";
 import MenuSider from "./components/menu-sider";
+import MenuFooter from "./components/menu-footer";
+
 import observeStickySentinelChange from "./sticky-event.jsx";
+
 import "./style.scss";
 
 class ShopMenu extends React.PureComponent {
@@ -26,8 +32,7 @@ class ShopMenu extends React.PureComponent {
       foodItem: null, // modal 的foodItem
       specModalSelectedFood: null,
     };
-    this.listHeaderRefs = []; // menuIdx => listheaderref
-    this.menuItemRefs = []; // menuIdx => menuitemref
+    this.listSentinelHeaderRefs = []; // menuIdx => listheaderref
     this.ios = [];
     this.stickEventListening = false;
   }
@@ -44,7 +49,10 @@ class ShopMenu extends React.PureComponent {
     const menuLoading = menu.size === 0;
     if (!menuLoading && !this.stickEventListening) {
       const container = document.querySelector(".food-list-wrapper");
-      this.ios = observeStickySentinelChange(container);
+      this.ios = observeStickySentinelChange(
+        container,
+        this.listSentinelHeaderRefs
+      );
       document.addEventListener(
         "sticky-event",
         this.handleStickyListHeaderChange
@@ -55,21 +63,45 @@ class ShopMenu extends React.PureComponent {
 
   compoenntWillUnmount() {
     if (this.ios.length) {
-      this.ios.forEach((io) => io.disconnect());
+      try {
+        this.ios.forEach((io) => io.disconnect());
+      } catch (err) {}
     }
   }
 
+  // 处理左侧菜单栏点击, 将对应list滚动到视口
+  handleMenuSiderClick = ({ key }) => {
+    key = parseInt(key);
+    this.setState(
+      {
+        menuSelectedFoodCategoryIdx: key,
+      },
+      () => {
+        this.listSentinelHeaderRefs[key].scrollIntoView({});
+      }
+    );
+
+    // console.log(this.listSentinelHeaderRefs[key].scrollTo);
+    // this.listSentinelHeaderRefs[key].scrollTo({
+    //   left: 0,
+    //   top: 0,
+    //   behavior: "smooth",
+    // });
+    // this.listSentinelHeaderRefs[key].scrollTop = 0;
+  };
+
+  // 右侧菜单list的粘性头改变
   handleStickyListHeaderChange = (stickyEvent) => {
     if (stickyEvent.detail.sticky) {
       const idx = parseInt(stickyEvent.detail.target.dataset.idx);
       // console.log("fired idx", idx);
-
       this.setState({
         menuSelectedFoodCategoryIdx: idx,
       });
     }
   };
 
+  // 显示选规格的modal
   showSpecModal = (foodItem) => {
     this.setState({
       showSpecModal: true,
@@ -77,6 +109,7 @@ class ShopMenu extends React.PureComponent {
     });
   };
 
+  // modal中点击加入购物车
   handleSpecModalOk = (e) => {
     const { addFoodToCart } = this.props;
     if (this.state.specModalSelectedFood) {
@@ -84,6 +117,7 @@ class ShopMenu extends React.PureComponent {
     }
   };
 
+  // 退出modal
   handleSpecModalCancel = (e) => {
     this.setState({
       showSpecModal: false,
@@ -92,6 +126,7 @@ class ShopMenu extends React.PureComponent {
     });
   };
 
+  // modal中选中的项目改变
   handleSpecModalRadioChange = (e) => {
     this.setState({
       specModalSelectedFood: e.target.value,
@@ -105,12 +140,13 @@ class ShopMenu extends React.PureComponent {
       shoppingCart,
       addFoodToCart,
       decreaseFoodFromCart,
+      emptyShopCart,
     } = this.props;
     const menuLoading = menu.size === 0;
     const { menuSelectedFoodCategoryIdx } = this.state;
 
     if (menuLoading) {
-      return <Skeleton active paragraph={{ rows: 20 }} />;
+      return <Skeleton active paragraph={{ rows: 5 }} />;
     } else {
       return (
         <div className="shop-menu-wrapper">
@@ -120,6 +156,7 @@ class ShopMenu extends React.PureComponent {
               menu,
               shoppingCart,
               menuSelectedFoodCategoryIdx,
+              handleMenuSiderClick: this.handleMenuSiderClick,
             }}
           />
           <FoodList
@@ -132,6 +169,16 @@ class ShopMenu extends React.PureComponent {
               showSpecModal: this.showSpecModal,
             }}
           />
+          <MenuFooter
+            {...{
+              shopId,
+              shoppingCart,
+              addFoodToCart,
+              decreaseFoodFromCart,
+              emptyShopCart,
+            }}
+          />
+          {/* 选规格的modal */}
           <div id="spec-modal-container"></div>
           {this.state.showSpecModal ? (
             <Modal
@@ -189,6 +236,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   decreaseFoodFromCart(params) {
     dispatch(shopActionCreators.decreaseFoodFromCart(params));
+  },
+  emptyShopCart(shopId) {
+    dispatch(shopActionCreators.emptyShopCart(shopId));
   },
 });
 
