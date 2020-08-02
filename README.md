@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-03 01:20:18
+ * @LastEditTime: 2020-08-03 01:28:56
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -18,6 +18,29 @@
 ### 动机
 
 > 自学前端, 跟着网上的视频教程敲的项目只有一两个页面, 而且太"顺利"了, 整个流程都是安排好的, 所以需要自己从头敲个项目练手, 从环境配置到项目上线走一遍, 先创造问题, 在解决问题的过程中学习.
+
+### dependencies
+
+```json
+{
+  "dependencies": {
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.4.3",
+    "antd-mobile": "^2.3.3",
+    "axios": "^0.19.2",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-immutable": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.1.1"
+  }
+}
+```
 
 ## 项目展示
 
