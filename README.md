@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-03 01:31:44
+ * @LastEditTime: 2020-08-03 01:40:39
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -54,30 +54,31 @@
 
 ### 首页
 
-![首页](./readme.assets/img/首页.gif)
+<img src="./readme.assets/img/首页.gif" alt="首页" width="300">
 
 ### shop
 
 #### 商品列表
 
-![shop滚动](./readme.assets/img/shop滚动.gif)
+<img src="./readme.assets/img/shop滚动.gif" alt="shop滚动" width="300">
 
 #### 购物车
 
-![购物车](./readme.assets/img/shop购物车.gif)
+<img src="./readme.assets/img/shop购物车.gif" alt="shop购物车" width="300">
 
 #### 评论
 
-![评论](./readme.assets/img/shop评论.gif)
+<img src="./readme.assets/img/shop评论.gif" alt="shop评论" width="300">
 
 ### 地址
 
-![城市选择](./readme.assets/img/城市选择页.gif)
-![详细地址](./readme.assets/img/详细地址选择页.gif)
+<img src="./readme.assets/img/城市选择页.gif" alt="城市选择页" width="300">
+
+<img src="./readme.assets/img/详细地址选择页.gif" alt="详细地址选择页" width="300">
 
 ### 登录注册
 
-![登录注册](./readme.assets/img/登录注册.gif)
+<img src="./readme.assets/img/登录注册.gif" alt="登录注册" width="300">
 
 ## 进度
 
