@@ -8,32 +8,37 @@ import ShopHome from "./shop-home";
 import "./style.scss";
 import {} from "./style";
 
-const Shop = () => {
-  return (
-    <Switch>
-      <Route path="/shop/:id/:page" component={ShopHome} />
-      <Redirect from="/shop/:id" to="/shop/:id/menu" />
-      <Redirect from="/shop" to="/home" />
-    </Switch>
-  );
-};
+class Shop extends PureComponent {
+  componentWillUnmount() {
+    const { reset } = this.props;
+    console.log("shop unmount");
+    // 离开shop相关页面,清空shopdetails, shopmenu等
+    reset();
+  }
 
-export default Shop;
+  render() {
+    return (
+      <Switch>
+        <Route path="/shop/:id/:page" component={ShopHome} />
+        <Redirect from="/shop/:id" to="/shop/:id/menu" />
+        <Redirect from="/shop" to="/home" />
+      </Switch>
+    );
+  }
+}
 
-// class Home extends PureComponent {
+const mapStateToProps = (state) => ({});
 
-//   render() {
-//     return (
-//       <div></div>
-//     );
-//   }
-// }
+const mapDispatchToProps = (dispatch) => ({
+  getShopDetails(shopid) {
+    return dispatch(actionCreators.getShopDetails(shopid));
+  },
+  getShopMenu(shopid) {
+    return dispatch(actionCreators.getShopMenu(shopid));
+  },
+  reset() {
+    dispatch(actionCreators.reset());
+  },
+});
 
-// const mapStateToProps = (state) => ({
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

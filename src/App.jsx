@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-08-02 11:36:27
+ * @LastEditTime: 2020-08-02 14:10:36
  * @FilePath: /react-elm/src/App.jsx
  * @Description: entry
  */
@@ -55,7 +55,7 @@ const App = () => (
       </Route> */}
       <Route path="/user" component={User} />
       <Route path="/building" component={Building} />
-      <Redirect exact from="/" to="/home" />
+      <Redirect from="/" to="/home" />
     </Switch>
   </Fragment>
 );

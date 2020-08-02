@@ -98,7 +98,7 @@ const MenuFooter = (props) => {
                 <List.Item key={item.itemId}>
                   <div className="list-item-wrapper">
                     <div className="left">
-                      <span>{item.name}</span>
+                      <span>{item.name}</span>-<span>{item.specs_name}</span>
                     </div>
                     <div className="right">
                       <span>¥{item.price}</span>

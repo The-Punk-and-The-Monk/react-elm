@@ -14,7 +14,12 @@ import ShopService from "services/shop-service";
 const _shopService = new ShopService();
 
 export const setShopList = (data) => ({
-  type: constants.CHANGE_DISPLAY_RESTAURANT_LIST,
+  type: constants.CHANGE_DISPLAY_SHOP_LIST,
+  data: data,
+});
+
+export const concatShopList = (data) => ({
+  type: constants.CONCAT_SHOP_LIST,
   data: data,
 });
 
@@ -23,7 +28,11 @@ export const getShopList = (params) => {
   return (dispatch) => {
     _shopService.getShopList(params).then(
       (res) => {
-        dispatch(setShopList(res.data));
+        if (params.offset) {
+          dispatch(concatShopList(res.data));
+        } else {
+          dispatch(setShopList(res.data));
+        }
       },
       (err) => {
         _errTips(err.message);

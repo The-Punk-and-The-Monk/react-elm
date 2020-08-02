@@ -1,3 +1,12 @@
+/*
+ * @Author: LinFeng
+ * @LastEditors: LinFeng
+ * @Date: 2020-07-29 21:11:37
+ * @LastEditTime: 2020-08-02 18:18:50
+ * @FilePath: /react-elm/src/components/footer/index.jsx
+ * @Description: 页面底部4个图标
+ */
+
 import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
 import { TabBar } from "antd-mobile";

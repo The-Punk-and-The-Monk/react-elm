@@ -22,11 +22,25 @@ class ChooseAddr extends PureComponent {
     this.props.getSearchAddrHistory(); // 进入页面从localStorage中取出搜索历史列表
   }
 
-  handleAddrClick = (addr) => {
-    this.props.pushSearchAddrHistory(addr).then(() => {
-      // 把用户选中的搜索结果条目push到搜索历史中, 函数会更新localStorage, 然后跳转到home
-      this.props.history.push("/");
-    });
+  handleAddrClick = (e) => {
+    const target = e.target.closest(".am-list-item");
+    if (!target) return;
+    if (target.dataset) {
+      let addr = null;
+      if (target.dataset.type) {
+        const { searchAddrHistoryList } = this.props;
+        addr = searchAddrHistoryList.get(parseInt(target.dataset.idx));
+      } else {
+        const { searchAddrList } = this.props;
+        addr = searchAddrList.get(parseInt(target.dataset.idx));
+      }
+      if (addr) {
+        this.props.pushSearchAddrHistory(addr.toJS()).then(() => {
+          // 把用户选中的搜索结果条目push到搜索历史中, 函数会更新localStorage, 然后跳转到home
+          this.props.history.push("/");
+        });
+      }
+    }
   };
 
   render() {
@@ -38,20 +52,18 @@ class ChooseAddr extends PureComponent {
     } = this.props;
 
     // 搜索结果区域
-    const searchResultsArea = searchAddrList.toJS().map((addr) => (
-      <Item
-        key={addr.name + "-" + addr.address}
-        onClick={() => this.handleAddrClick(addr)}
-      >
+    const searchResultsArea = searchAddrList.toJS().map((addr, idx) => (
+      <Item data-idx={idx} key={addr.name + "-" + addr.address}>
         {addr.name} <Brief>{addr.address}</Brief>
       </Item>
     ));
 
     // 搜索历史区域
-    const searchHistoryArea = searchAddrHistoryList.toJS().map((addr) => (
+    const searchHistoryArea = searchAddrHistoryList.toJS().map((addr, idx) => (
       <Item
         key={addr.name + "-" + addr.address}
-        onClick={() => this.handleAddrClick(addr)}
+        data-idx={idx}
+        data-type={"history"}
       >
         {addr.name} <Brief>{addr.address}</Brief>
       </Item>
@@ -85,10 +97,17 @@ class ChooseAddr extends PureComponent {
           />
 
           {/* 有搜索结果区域就显示搜索结果 */}
-          {searchResultsArea.length ? <List>{searchResultsArea}</List> : null}
+          {searchResultsArea.length ? (
+            <List onClick={this.handleAddrClick}>{searchResultsArea}</List>
+          ) : null}
           {/* 没有搜索结果且搜索历史不为空 */}
           {!searchResultsArea.length && searchHistoryArea.length ? (
-            <List renderHeader={() => "搜索历史"}>{searchHistoryArea}</List>
+            <List
+              renderHeader={() => "搜索历史"}
+              onClick={this.handleAddrClick}
+            >
+              {searchHistoryArea}
+            </List>
           ) : null}
         </div>
       </Fragment>

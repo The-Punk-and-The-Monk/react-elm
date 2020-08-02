@@ -19,7 +19,7 @@ export const getHomeShopCategoryList = () => {
     _shop.getHomeShopCategoryList().then(
       (res) => {
         dispatch({
-          type: constants.CHANGE_HOME_RESTAURANT_CATEGORY_LIST,
+          type: constants.CHANGE_HOME_SHOP_CATEGORY_LIST,
           data: res.data,
         });
       },
@@ -31,14 +31,21 @@ export const getHomeShopCategoryList = () => {
 };
 
 // 获取附近的餐馆列表
-export const getNearbyShopList = ({ latitude, longitude }) => {
+export const getNearbyShopList = (params) => {
   return (dispatch) => {
-    _shop.getShopList({ latitude, longitude }).then(
+    _shop.getShopList(params).then(
       (res) => {
-        dispatch({
-          type: constants.CHANGE_NEARBY_RESTAURANT_LIST,
-          data: res.data,
-        });
+        if (params.offset) {
+          dispatch({
+            type: constants.CONCAT_NEARBY_SHOP_LIST,
+            data: res.data,
+          });
+        } else {
+          dispatch({
+            type: constants.CHANGE_NEARBY_SHOP_LIST,
+            data: res.data,
+          });
+        }
       },
       (err) => {
         _errTips(err.message);

@@ -65,6 +65,9 @@
 // 购物车drawer
 
 .cart-drawer {
+  .ant-drawer-content-wrapper {
+    height: 50% !important;
+  }
   .ant-drawer-body {
     padding: 5px 24px;
     font-size: 20px;
@@ -82,7 +85,7 @@
     }
   }
   .list-wrapper {
-    paddind-bottom: $shop-home-menu-footer-height;
+    padding-bottom: $shop-home-menu-footer-height;
     .list-item-wrapper {
       display: flex;
       flex-direction: row;

@@ -40,8 +40,10 @@ class ShopMenu extends React.PureComponent {
   componentDidMount() {
     console.log("shopmenu mount");
     const { id } = this.props.match.params;
-    const { getShopMenu } = this.props;
-    getShopMenu(id);
+    const { getShopMenu, menu } = this.props;
+    if (!menu.size) {
+      getShopMenu(id);
+    }
   }
 
   componentDidUpdate() {
@@ -62,6 +64,11 @@ class ShopMenu extends React.PureComponent {
   }
 
   compoenntWillUnmount() {
+    document.removeEventListener(
+      "sticky-event",
+      this.handleStickyListHeaderChange
+    );
+
     if (this.ios.length) {
       try {
         this.ios.forEach((io) => io.disconnect());
@@ -201,6 +208,7 @@ class ShopMenu extends React.PureComponent {
                       itemId: this.state.foodItem.get("item_id"),
                       name: food.get("name"),
                       num: 1,
+                      specs_name: food.get("specs_name"),
                       packing_fee: food.get("packing_fee"),
                       price: food.get("price"),
                       sku_id: food.get("sku_id"),
@@ -222,7 +230,7 @@ class ShopMenu extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  shop: state.getIn(["shop", "shop"]),
+  // shop: state.getIn(["shop", "shop"]),
   menu: state.getIn(["shop", "menu"]),
   shoppingCart: state.getIn(["shop", "shoppingCart"]),
 });

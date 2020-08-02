@@ -17,7 +17,7 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case constants.CHANGE_ALL_RESTAURANT_CATEGORY_LIST: {
+    case constants.CHANGE_ALL_SHOP_CATEGORY_LIST: {
       if (action.data.length === 0) {
         // 数据为空, 设置loading为true
         return state.merge({

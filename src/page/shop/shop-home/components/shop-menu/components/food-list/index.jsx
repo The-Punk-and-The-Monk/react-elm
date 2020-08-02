@@ -27,6 +27,7 @@ const FoodList = (props) => {
       foodCategoryId: foodItem.get("category_id"),
       itemId: foodItem.get("item_id"),
       name: foodItem.getIn(["specfoods", 0, "name"]),
+      specs_name: foodItem.getIn(["specfoods", 0, "specs_name"]),
       num: 1,
       packing_fee: foodItem.getIn(["specfoods", 0, "packing_fee"]),
       price: foodItem.getIn(["specfoods", 0, "price"]),

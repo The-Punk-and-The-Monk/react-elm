@@ -21,14 +21,6 @@ class ShopHome extends PureComponent {
     getShopDetails(id);
   }
 
-  componentWillUnmount() {
-    const { getShopDetails, getShopMenu } = this.props;
-
-    // 离开shop相关页面,清空shopdetails, shopmenu等
-    getShopDetails(-1);
-    getShopMenu(-1);
-  }
-
   handleMenuClick = ({ key }) => {
     const { history } = this.props;
     const { id } = this.props.match.params;
@@ -56,9 +48,7 @@ class ShopHome extends PureComponent {
         </Menu>
         <Switch>
           <Route path="/shop/:id/menu" component={ShopMenu} />
-          <Route path="/shop/:id/rating">
-            <ShopRating rating={""} />
-          </Route>
+          <Route path="/shop/:id/rating" component={ShopRating} />
         </Switch>
       </div>
     );

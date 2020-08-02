@@ -1,7 +1,17 @@
+/*
+ * @Author: LinFeng
+ * @LastEditors: LinFeng
+ * @Date: 2020-08-01 18:56:33
+ * @LastEditTime: 2020-08-02 18:20:08
+ * @FilePath: /react-elm/src/components/shop-list/index.jsx
+ * @Description: 餐馆列表
+ */
+
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Card, List } from "antd-mobile";
 import { Rate, Skeleton, Avatar } from "antd";
+import ListFooter from "../list-footer";
 import "./style.scss";
 
 const Item = List.Item;
@@ -13,7 +23,13 @@ const ShopList = (props) => {
    * fakelistlen: 设置占位元素的listitem个数
    */
   const history = useHistory();
-  const { dataList = [], title = "", loading = true, fakeListLen = 20 } = props;
+  const {
+    dataList = [],
+    title = "",
+    loading = true,
+    fakeListLen = 20,
+    hitBottomCallback = null,
+  } = props;
   let displayList = null;
 
   function handleShopItemClick(e) {
@@ -111,6 +127,11 @@ const ShopList = (props) => {
       ) : null}
 
       {displayList}
+      {hitBottomCallback ? (
+        <Item>
+          <ListFooter hitBottomCallback={hitBottomCallback} />
+        </Item>
+      ) : null}
     </List>
   );
 };

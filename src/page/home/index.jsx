@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-27 10:14:49
- * @LastEditTime: 2020-08-01 22:39:28
+ * @LastEditTime: 2020-08-02 18:40:02
  * @FilePath: /react-elm/src/page/home/index.jsx
  * @Description:
  */
@@ -15,6 +15,7 @@ import { actionCreators as locationActionCreators } from "src/page/location/stor
 import Header from "src/components/header";
 import Footer from "src/components/footer";
 import ShopList from "src/components/shop-list";
+import ListFooter from "src/components/list-footer";
 import { Icon, Grid } from "antd-mobile";
 import { Skeleton, Avatar, Carousel } from "antd";
 import "./style.scss";
@@ -44,6 +45,15 @@ class Home extends PureComponent {
     const { history } = this.props;
     const { text, id } = target;
     history.push(`/shop-category/${text}/${id}`);
+  };
+
+  loadMoreList = () => {
+    const { addr, nearbyShopList, getNearbyShopList } = this.props;
+    getNearbyShopList({
+      latitude: addr.get("latitude"),
+      longitude: addr.get("longitude"),
+      offset: nearbyShopList.size,
+    });
   };
 
   render() {
@@ -126,6 +136,7 @@ class Home extends PureComponent {
                 dataList={nearbyShopList}
                 loading={nearbyShopListLoading}
                 title="附近商家"
+                hitBottomCallback={this.loadMoreList}
               />
             </div>
           </div>
@@ -148,8 +159,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getNearbyShopList({ latitude, longitude }) {
-    dispatch(actionCreators.getNearbyShopList({ latitude, longitude }));
+  getNearbyShopList(params) {
+    dispatch(actionCreators.getNearbyShopList(params));
   },
   getHomeShopCategoryList() {
     dispatch(actionCreators.getHomeShopCategoryList());

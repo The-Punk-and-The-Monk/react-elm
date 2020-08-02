@@ -23,6 +23,18 @@ class ShopCategory extends PureComponent {
       shop_category_id: id,
     });
   }
+
+  loadMoreList = () => {
+    const { id } = this.props.match.params;
+    const { addr, getShopList, dispalyShopList } = this.props;
+    getShopList({
+      longitude: addr.get("longitude"),
+      latitude: addr.get("latitude"),
+      shop_category_id: id,
+      offset: dispalyShopList.size,
+    });
+  };
+
   render() {
     const { history } = this.props;
     const { title } = this.props.match.params;
@@ -44,7 +56,11 @@ class ShopCategory extends PureComponent {
         />
         <OptionsCascader />
         <div className="shopcategory-displaylist-wrapper">
-          <ShopList dataList={displayList} loading={displayLoading} />
+          <ShopList
+            dataList={displayList}
+            loading={displayLoading}
+            hitBottomCallback={this.loadMoreList}
+          />
         </div>
       </Fragment>
     );

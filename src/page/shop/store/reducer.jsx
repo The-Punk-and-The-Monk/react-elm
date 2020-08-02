@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:15:06
- * @LastEditTime: 2020-07-31 09:46:11
+ * @LastEditTime: 2020-08-02 19:23:42
  * @FilePath: /react-elm/src/page/shop/store/reducer.jsx
  * @Description:
  */
@@ -40,6 +40,9 @@ const defaultState = fromJS({
   shop: {}, // 商家详情
   menu: [], // 商家菜单
   shoppingCart: {},
+  ratingScores: {},
+  ratingTags: [],
+  ratingList: [],
 });
 
 export default (state = defaultState, action) => {
@@ -47,6 +50,8 @@ export default (state = defaultState, action) => {
     case constants.CHANGE_SHOP: {
       return state.set("shop", fromJS(action.data));
     }
+
+    // menu 相关
     case constants.CHANGE_MENU: {
       return state.set("menu", fromJS(action.data));
     }
@@ -123,6 +128,26 @@ export default (state = defaultState, action) => {
     }
     case constants.EMPTY_SHOP_CART: {
       return state.deleteIn(["shoppingCart", "" + action.shopId]);
+    }
+
+    // rating相关
+    case constants.CHANGE_RATING_SCORES: {
+      return state.set("ratingScores", fromJS(action.data));
+    }
+    case constants.CHANGE_RATING_TAGS: {
+      return state.set("ratingTags", fromJS(action.data));
+    }
+    case constants.CHANGE_RATING_LIST: {
+      return state.set("ratingList", fromJS(action.data));
+    }
+    case constants.CONCAT_RATINGS: {
+      return state.set(
+        "ratingList",
+        state.get("ratingList").concat(fromJS(action.data))
+      );
+    }
+    case constants.RESET: {
+      return defaultState;
     }
     default:
       return state;

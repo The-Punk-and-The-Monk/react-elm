@@ -19,7 +19,7 @@ export const getAllShopCategoriesList = () => {
     _shopService.getAllShopCategoriesList().then(
       (res) => {
         dispatch({
-          type: constants.CHANGE_ALL_RESTAURANT_CATEGORY_LIST,
+          type: constants.CHANGE_ALL_SHOP_CATEGORY_LIST,
           data: res.data,
         });
       },

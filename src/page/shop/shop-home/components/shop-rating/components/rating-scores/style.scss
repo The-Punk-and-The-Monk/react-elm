@@ -1,0 +1,24 @@
+.rating-scores-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0;
+  .left {
+    text-align: center;
+
+    h1 {
+      font-size: 2em;
+      color: orange;
+    }
+    p:nth-child(3) {
+      font-size: 0.6em;
+    }
+  }
+  .right {
+    span:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

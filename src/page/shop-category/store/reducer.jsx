@@ -17,7 +17,7 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case constants.CHANGE_DISPLAY_RESTAURANT_LIST: {
+    case constants.CHANGE_DISPLAY_SHOP_LIST: {
       if (action.data.length === 0) {
         // 数据为空,置loading为true
         return state.merge({
@@ -30,6 +30,12 @@ export default (state = defaultState, action) => {
           dispalyShopList: fromJS(action.data),
         });
       }
+    }
+    case constants.CONCAT_SHOP_LIST: {
+      return state.set(
+        "dispalyShopList",
+        state.get("dispalyShopList").concat(fromJS(action.data))
+      );
     }
     default:
       return state;

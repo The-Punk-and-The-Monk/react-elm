@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:15:06
- * @LastEditTime: 2020-07-28 18:12:05
+ * @LastEditTime: 2020-08-02 18:14:06
  * @FilePath: /react-elm/src/page/home/store/reducer.jsx
  * @Description:
  */
@@ -19,17 +19,23 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case constants.CHANGE_HOME_RESTAURANT_CATEGORY_LIST: {
+    case constants.CHANGE_HOME_SHOP_CATEGORY_LIST: {
       return state.merge({
         homeShopCategoryList: fromJS(action.data),
         homeShopCategoryListLoading: false,
       });
     }
-    case constants.CHANGE_NEARBY_RESTAURANT_LIST: {
+    case constants.CHANGE_NEARBY_SHOP_LIST: {
       return state.merge({
         nearbyShopList: fromJS(action.data),
         nearbyShopListLoading: false,
       });
+    }
+    case constants.CONCAT_NEARBY_SHOP_LIST: {
+      return state.set(
+        "nearbyShopList",
+        state.get("nearbyShopList").concat(fromJS(action.data))
+      );
     }
     default:
       return state;

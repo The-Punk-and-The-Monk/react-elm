@@ -34,15 +34,29 @@ export default class ShopService {
   }) {
     return axios.get(
       // `/api/shopping/restaurants?latitude=${latitude}&longitude=${longitude}&offset=${offset}&limit=${limit}&restaurant_category_id=${restaurant_category_id}&order_by=${order_by}&delivery_mode=${delivery_mode}&support_ids=${support_ids}`
-      `/proxyapi/shopping/restaurants?latitude=24.436002&longitude=118.102693&offset=0&limit=20&extras[]=activities&keyword=&restaurant_category_id=${restaurant_category_id}&restaurant_category_ids[]=${restaurant_category_ids}&order_by=${order_by}&delivery_mode[]=${delivery_mode}&support_ids[]=${support_ids}`
+      `/proxyapi/shopping/restaurants?latitude=24.436002&longitude=118.102693&offset=${offset}&limit=20&extras[]=activities&keyword=&restaurant_category_id=${restaurant_category_id}&restaurant_category_ids[]=${restaurant_category_ids}&order_by=${order_by}&delivery_mode[]=${delivery_mode}&support_ids[]=${support_ids}`
     );
   }
 
-  getShopDetails(shopid) {
-    return axios.get(`/proxyapi/shopping/restaurant/${shopid}`);
+  getShopDetails(shopID) {
+    return axios.get(`/proxyapi/shopping/restaurant/${shopID}`);
   }
 
-  getShopMenu(shopid) {
-    return axios.get(`/proxyapi/shopping/v2/menu?restaurant_id=${shopid}`);
+  getShopMenu(shopID) {
+    return axios.get(`/proxyapi/shopping/v2/menu?restaurant_id=${shopID}`);
+  }
+
+  getRatingScores(shopID) {
+    return axios.get(`/proxyapi/ugc/v2/restaurants/${shopID}/ratings/scores`);
+  }
+
+  getRatingTags(shopID) {
+    return axios.get(`/proxyapi/ugc/v2/restaurants/${shopID}/ratings/tags`);
+  }
+
+  getRatingList({ shopID, tagName = "全部", offset = 0, limit = 10 }) {
+    return axios.get(
+      `/proxyapi/ugc/v2/restaurants/${shopID}/ratings?tag_name=${tagName}&offset=${offset}&limit=${limit}`
+    );
   }
 }
