@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-02 00:26:49
+ * @LastEditTime: 2020-08-02 11:01:33
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -37,6 +37,8 @@
 
 地址: http://elm.linfeng.space
 
-注 1: 可能需要科学上网
+注 1: 由于自己搭的后端没有图片之类的, 接口请求都转发到了[node-elm](https://github.com/bailicangdu/node-elm)项目提供的接口地址, 默默感谢大佬.
 
-注 2: 动态加载未实现, 样式也抽风了, 在开发环境好好的, 打包后动态加载跟 css 都出问题了....待解决
+注 2: 可能需要科学上网
+
+注 3: 动态加载未实现, 样式也抽风了, 在开发环境好好的, 打包后动态加载跟 css 都出问题了....待解决
