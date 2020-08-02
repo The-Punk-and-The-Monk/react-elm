@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-03 01:40:39
+ * @LastEditTime: 2020-08-03 01:47:21
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -49,8 +49,12 @@
 > 地址: http://elm.linfeng.space
 
 > 注 1: 本来后端打算使用作者[bailicangdu](https://github.com/bailicangdu)的项目[node-elm](https://github.com/bailicangdu/node-elm)在服务器部署, 但是图片啥的请求不到..., 对这个方面不了解就不敢去折腾, 所以接口请求都转发到了[node-elm](https://github.com/bailicangdu/node-elm)项目提供的接口地址, 默默感谢[bailicangdu](https://github.com/bailicangdu)大佬.
-
-> 注 2: 可能需要科学上网
+>
+> 注 2: 可能需要科学上网,
+>
+> 注 3: 开发环境使用的是 chrome 版本 版本 84.0.4147.105（正式版本） （64 位）的手机模式查看页面.
+>
+> 注 4: 由于录屏软件的原因, 录屏拖动的时候会有抖动
 
 ### 首页
 
