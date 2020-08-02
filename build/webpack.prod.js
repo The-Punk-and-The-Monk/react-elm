@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:37:15
- * @LastEditTime: 2020-08-02 00:07:52
+ * @LastEditTime: 2020-08-02 11:53:51
  * @FilePath: /react-elm/build/webpack.prod.js
  * @Description: prod
  */
@@ -14,6 +14,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 // const HappyPack = require('happypack')
 
@@ -25,7 +27,7 @@ module.exports = merge(webpackCommonConf, {
   output: {
     filename: "[name].[contentHash:8].js", // name 即多入口是entry的key, 加上8字符哈希戳
     path: distPath,
-    // publicPath: "//localhost:8989", // 修改所有静态文件 url 的前缀
+    publicPath: "/", // 修改所有静态文件 url 的前缀
   },
   module: {
     rules: [
@@ -90,6 +92,7 @@ module.exports = merge(webpackCommonConf, {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       // window.ENV = 'production'
@@ -98,7 +101,8 @@ module.exports = merge(webpackCommonConf, {
 
     // 抽离 css
     new MiniCssExtractPlugin({
-      filename: "css/main.[contentHash:8].css",
+      filename: "css/[name].[contentHash:8].css",
+      chunkFilename: "css/[id].[contentHash:8].css",
     }),
 
     // 使用IgnorePlugin忽略某个目录, 如 忽略 moment 下的 /locale 目录
@@ -137,33 +141,33 @@ module.exports = merge(webpackCommonConf, {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
 
     // 分割代码块
-    splitChunks: {
-      /**
-       * initial 入口chunk，对于异步导入的文件不处理
-        async 异步chunk，只对异步导入的文件处理
-        all 全部chunk
-      */
-      chunks: "all",
+    // splitChunks: {
+    //   /**
+    //    * initial 入口chunk，对于异步导入的文件不处理
+    //     async 异步chunk，只对异步导入的文件处理
+    //     all 全部chunk
+    //   */
+    //   chunks: "all",
 
-      // 缓存分组
-      cacheGroups: {
-        // 第三方模块
-        vendor: {
-          name: "vendor", // chunk 名称
-          priority: 1, // 权限最高, 优先抽离, 重要
-          test: /node_modules/,
-          minSize: 3 * 1024, // 太小的就算了
-          minChunks: 1, // 最少复用过几次
-        },
+    //   // 缓存分组
+    //   cacheGroups: {
+    //     // 第三方模块
+    //     vendor: {
+    //       name: "vendor", // chunk 名称
+    //       priority: 1, // 权限最高, 优先抽离, 重要
+    //       test: /node_modules/,
+    //       minSize: 3 * 1024, // 太小的就算了
+    //       minChunks: 1, // 最少复用过几次
+    //     },
 
-        // 公共模块
-        common: {
-          name: "common",
-          priority: 0,
-          minSize: 3 * 1024,
-          minChunks: 2, // 公共模块最少复用过几次
-        },
-      },
-    },
+    //     // 公共模块
+    //     common: {
+    //       name: "common",
+    //       priority: 0,
+    //       minSize: 3 * 1024,
+    //       minChunks: 2, // 公共模块最少复用过几次
+    //     },
+    //   },
+    // },
   },
 });

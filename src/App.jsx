@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-08-01 23:48:59
+ * @LastEditTime: 2020-08-02 11:36:27
  * @FilePath: /react-elm/src/App.jsx
  * @Description: entry
  */
@@ -21,13 +21,14 @@ import store from "./store";
 // const Home = React.lazy(() => import("src/page/home"));
 // const Location = React.lazy(() => import("./page/location"));
 
-import Home from "src/page/home";
-import ShopCategory from "src/page/shop-category";
+import Home from "src/page/home/loadable.jsx";
+import ShopCategory from "src/page/shop-category/loadable.jsx";
 import LocalStorageLoader from "./components/localstorage-loader";
-import Location from "./page/location";
-import Search from "./page/search";
-import User from "./page/user";
-import Shop from "./page/shop";
+import Location from "./page/location/loadable.jsx";
+import Search from "./page/search/loadable.jsx";
+import User from "./page/user/loadable.jsx";
+import Shop from "./page/shop/loadable.jsx";
+import Building from "src/components/building";
 
 import "./reset.css";
 import "antd/dist/antd.css";
@@ -47,10 +48,13 @@ const App = () => (
       <Route path="/location">
         <Location />
       </Route>
-      <Route path="/search">
+      <Redirect from="/search" to="/building" />
+      <Redirect from="/order" to="/building" />
+      {/* <Route path="/search">
         <Search />
-      </Route>
+      </Route> */}
       <Route path="/user" component={User} />
+      <Route path="/building" component={Building} />
       <Redirect exact from="/" to="/home" />
     </Switch>
   </Fragment>

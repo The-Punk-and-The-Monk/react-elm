@@ -1,11 +1,11 @@
 import React from "react";
-import { Row, Col, Avatar, Skeleton } from "antd";
+import Building from "src/components/building";
 import "./style.scss";
 
 const ShopRating = (props) => {
   const { rating } = props;
   // const ratingLoading = rating.size === 0;
-  return <div>建设中</div>;
+  return <Building />;
 };
 
 export default ShopRating;

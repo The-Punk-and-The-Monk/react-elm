@@ -18,7 +18,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-list"></use>
           </svg>
         ),
-        href: "/order",
+        href: "/building",
       },
       {
         title: "积分商城",
@@ -27,7 +27,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-jifenshangcheng"></use>
           </svg>
         ),
-        href: "/jifenshangcheng",
+        href: "/building",
       },
       {
         title: "饿了么会员卡",
@@ -36,7 +36,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-huiyuan"></use>
           </svg>
         ),
-        href: "/vipcard",
+        href: "/building",
       },
       {
         title: "服务中心",
@@ -45,7 +45,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-fuwuzhongxin"></use>
           </svg>
         ),
-        href: "/service",
+        href: "/building",
       },
       {
         title: "下载饿了么APP",
@@ -54,7 +54,7 @@ class UserHome extends PureComponent {
             <use xlinkHref="#icon-elema-blue"></use>
           </svg>
         ),
-        href: "/elmapp",
+        href: "/building",
       },
     ];
   }
