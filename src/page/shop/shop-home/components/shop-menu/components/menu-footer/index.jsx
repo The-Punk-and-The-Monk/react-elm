@@ -95,7 +95,7 @@ const MenuFooter = (props) => {
           <div className="list-wrapper">
             <List>
               {items.map((item) => (
-                <List.Item key={item.itemId}>
+                <List.Item key={item.foodId}>
                   <div className="list-item-wrapper">
                     <div className="left">
                       <span>{item.name}</span>-<span>{item.specs_name}</span>

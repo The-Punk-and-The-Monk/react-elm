@@ -118,6 +118,8 @@ class ShopMenu extends React.PureComponent {
 
   // modal中点击加入购物车
   handleSpecModalOk = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const { addFoodToCart } = this.props;
     if (this.state.specModalSelectedFood) {
       addFoodToCart(this.state.specModalSelectedFood);

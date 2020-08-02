@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-02 11:01:33
+ * @LastEditTime: 2020-08-03 01:20:18
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -11,9 +11,50 @@
 
 ## 说明
 
-2020.7.25
+### 目标
 
-尝试用 react 模仿[bailicangdu](https://github.com/bailicangdu)的 elm 前端项目[vue2-elm](https://github.com/bailicangdu/vue2-elm), 后端使用该作者的项目[node-elm](https://github.com/bailicangdu/node-elm)在本地部署.
+> 尝试用 react 模仿[bailicangdu](https://github.com/bailicangdu)的 elm 前端项目[vue2-elm](https://github.com/bailicangdu/vue2-elm), 后端使用该作者的项目[node-elm](https://github.com/bailicangdu/node-elm)在本地部署.
+
+### 动机
+
+> 自学前端, 跟着网上的视频教程敲的项目只有一两个页面, 而且太"顺利"了, 整个流程都是安排好的, 所以需要自己从头敲个项目练手, 从环境配置到项目上线走一遍, 先创造问题, 在解决问题的过程中学习.
+
+## 项目展示
+
+### 地址
+
+> 地址: http://elm.linfeng.space
+
+> 注 1: 本来后端打算使用作者[bailicangdu](https://github.com/bailicangdu)的项目[node-elm](https://github.com/bailicangdu/node-elm)在服务器部署, 但是图片啥的请求不到..., 对这个方面不了解就不敢去折腾, 所以接口请求都转发到了[node-elm](https://github.com/bailicangdu/node-elm)项目提供的接口地址, 默默感谢[bailicangdu](https://github.com/bailicangdu)大佬.
+
+> 注 2: 可能需要科学上网
+
+### 首页
+
+![首页](./readme.assets/img/首页.gif)
+
+### shop
+
+#### 商品列表
+
+![shop滚动](./readme.assets/img/shop滚动.gif)
+
+#### 购物车
+
+![购物车](./readme.assets/img/shop购物车.gif)
+
+#### 评论
+
+![评论](./readme.assets/img/shop评论.gif)
+
+### 地址
+
+![城市选择](./readme.assets/img/城市选择页.gif)
+![详细地址](./readme.assets/img/详细地址选择页.gif)
+
+### 登录注册
+
+![登录注册](./readme.assets/img/登录注册.gif)
 
 ## 进度
 
@@ -35,10 +76,6 @@
 
 #### 尝试上线
 
-地址: http://elm.linfeng.space
+### 2020.8.2
 
-注 1: 由于自己搭的后端没有图片之类的, 接口请求都转发到了[node-elm](https://github.com/bailicangdu/node-elm)项目提供的接口地址, 默默感谢大佬.
-
-注 2: 可能需要科学上网
-
-注 3: 动态加载未实现, 样式也抽风了, 在开发环境好好的, 打包后动态加载跟 css 都出问题了....待解决
+完善商铺首页, 抽出一些组件, 完善项目上线
