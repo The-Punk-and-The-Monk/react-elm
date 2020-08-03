@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-03 01:47:21
+ * @LastEditTime: 2020-08-03 22:56:49
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -107,3 +107,7 @@
 ### 2020.8.2
 
 完善商铺首页, 抽出一些组件, 完善项目上线
+
+### 2020.8.3
+
+回头补习基础, 准备秋招, 可能没时间了
