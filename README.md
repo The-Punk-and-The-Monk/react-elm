@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-03 22:56:49
+ * @LastEditTime: 2020-08-04 20:23:46
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -111,3 +111,12 @@
 ### 2020.8.3
 
 回头补习基础, 准备秋招, 可能没时间了
+
+### 阶段总结:
+
+相比[node-elm](https://github.com/bailicangdu/node-elm)
+
+在数据交互方面, 个人认为整个项目相对比较难的地方可能就是购物车中的数量在 menu-sider, list, shoppingCart 几个位置的同步了.
+还有一个应该是提交订单时的地址选择跟优惠券等, 这个暂时没时间去做了.剩下的感觉都是数据展示.
+
+在页面效果方面, 做了加载数据跟加载页面时的反馈, list 的无限加载. 相比[node-elm](https://github.com/bailicangdu/node-elm)少了一个添加到购物车时"+"的动画效果, 但是多做了商店首页的吸顶 banner 还有 banner 与 menu-sider 的选中项的同步.
