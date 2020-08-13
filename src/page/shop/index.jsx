@@ -30,11 +30,11 @@ class Shop extends PureComponent {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  getShopDetails(shopid) {
-    return dispatch(actionCreators.getShopDetails(shopid));
+  getShopDetails(shopID) {
+    return dispatch(actionCreators.getShopDetails(shopID));
   },
-  getShopMenu(shopid) {
-    return dispatch(actionCreators.getShopMenu(shopid));
+  getShopMenu(shopID) {
+    return dispatch(actionCreators.getShopMenu(shopID));
   },
   reset() {
     dispatch(actionCreators.reset());

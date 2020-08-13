@@ -54,7 +54,7 @@ function observeSentinelFooter(container) {
           const rootHeight = rootBottom - rootTop;
           if (
             sentinelTop > rootTop &&
-            Math.abs(sentinelTop - rootTop) < rootHeight - sentinelHeight - 100
+            Math.abs(sentinelTop - rootTop) < rootHeight / 4
           ) {
             // console.log("footer fire");
             const stickyHeader = entry.target.parentElement.querySelector(

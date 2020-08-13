@@ -13,16 +13,16 @@ import ShopService from "src/services/shop-service";
 
 const _shop = new ShopService();
 
-export const getShopDetails = (shopid) => {
+export const getShopDetails = (shopID) => {
   return (dispatch) => {
-    if (shopid === -1) {
+    if (shopID === -1) {
       // 用于置空shop
       dispatch({
         type: constants.CHANGE_SHOP,
         data: {},
       });
     } else {
-      return _shop.getShopDetails(shopid).then((res) => {
+      return _shop.getShopDetails(shopID).then((res) => {
         dispatch({
           type: constants.CHANGE_SHOP,
           data: res.data,
@@ -32,16 +32,16 @@ export const getShopDetails = (shopid) => {
   };
 };
 
-export const getShopMenu = (shopid) => {
+export const getShopMenu = (shopID) => {
   return (dispatch) => {
-    if (shopid === -1) {
+    if (shopID === -1) {
       // 用于置空menu
       dispatch({
         type: constants.CHANGE_MENU,
         data: [],
       });
     } else {
-      return _shop.getShopMenu(shopid).then((res) => {
+      return _shop.getShopMenu(shopID).then((res) => {
         dispatch({
           type: constants.CHANGE_MENU,
           data: res.data,
@@ -61,9 +61,9 @@ export const decreaseFoodFromCart = (obj) => ({
   data: obj,
 });
 
-export const emptyShopCart = (shopId) => ({
+export const emptyShopCart = (shopID) => ({
   type: constants.EMPTY_SHOP_CART,
-  shopId,
+  shopID,
 });
 
 export const getRatingScores = (shopID) => {

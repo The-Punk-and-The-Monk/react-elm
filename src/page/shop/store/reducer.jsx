@@ -12,9 +12,9 @@ import * as constants from "./constants";
 
 /**
  * shopingCart: {
- *  shopId: {
+ *  shopID: {
  *    foodId: {
- *      shopId,
+ *      shopID,
  *      foodId,
  *      foodCategoryId,
  *      itemId,
@@ -59,32 +59,32 @@ export default (state = defaultState, action) => {
       const data = action.data;
 
       const foodId = data.foodId;
-      const shopId = data.shopId;
+      const shopID = data.shopID;
       const itemId = data.itemId;
       const foodCategoryId = data.foodCategoryId;
 
       let shoppingCart = state.get("shoppingCart").toJS();
-      if (!shoppingCart[shopId]) {
-        shoppingCart[shopId] = {};
+      if (!shoppingCart[shopID]) {
+        shoppingCart[shopID] = {};
       }
-      if (!shoppingCart[shopId][foodId]) {
-        shoppingCart[shopId][foodId] = data;
+      if (!shoppingCart[shopID][foodId]) {
+        shoppingCart[shopID][foodId] = data;
       } else {
-        shoppingCart[shopId][foodId].num += data.num;
+        shoppingCart[shopID][foodId].num += data.num;
       }
-      if (!shoppingCart[shopId][itemId]) {
-        shoppingCart[shopId][itemId] = {
+      if (!shoppingCart[shopID][itemId]) {
+        shoppingCart[shopID][itemId] = {
           num: data.num,
         };
       } else {
-        shoppingCart[shopId][itemId].num += data.num;
+        shoppingCart[shopID][itemId].num += data.num;
       }
-      if (!shoppingCart[shopId][foodCategoryId]) {
-        shoppingCart[shopId][foodCategoryId] = {
+      if (!shoppingCart[shopID][foodCategoryId]) {
+        shoppingCart[shopID][foodCategoryId] = {
           num: data.num,
         };
       } else {
-        shoppingCart[shopId][foodCategoryId].num += data.num;
+        shoppingCart[shopID][foodCategoryId].num += data.num;
       }
 
       return state.set("shoppingCart", fromJS(shoppingCart));
@@ -92,42 +92,42 @@ export default (state = defaultState, action) => {
     case constants.DECREASE_FOOD_FROM_CART: {
       const data = action.data;
       const foodId = data.foodId;
-      const shopId = data.shopId;
+      const shopID = data.shopID;
       const itemId = data.itemId;
       const foodCategoryId = data.foodCategoryId;
 
       let shoppingCart = state.get("shoppingCart").toJS();
-      if (!shoppingCart[shopId]) {
-        console.log("shopid not exist");
+      if (!shoppingCart[shopID]) {
+        console.log("shopID not exist");
       }
-      if (!shoppingCart[shopId][foodId]) {
+      if (!shoppingCart[shopID][foodId]) {
         console.log("foodid not exist");
       }
-      if (!shoppingCart[shopId][itemId]) {
+      if (!shoppingCart[shopID][itemId]) {
         console.log("itemid not exist");
       }
-      if (!shoppingCart[shopId][foodCategoryId]) {
+      if (!shoppingCart[shopID][foodCategoryId]) {
         console.log("foodCategoryId not exist");
       }
-      shoppingCart[shopId][foodId].num -= 1;
-      if (shoppingCart[shopId][foodId].num === 0) {
-        delete shoppingCart[shopId][foodId];
+      shoppingCart[shopID][foodId].num -= 1;
+      if (shoppingCart[shopID][foodId].num === 0) {
+        delete shoppingCart[shopID][foodId];
       }
-      shoppingCart[shopId][itemId].num -= 1;
-      if (shoppingCart[shopId][itemId].num === 0) {
-        delete shoppingCart[shopId][itemId];
+      shoppingCart[shopID][itemId].num -= 1;
+      if (shoppingCart[shopID][itemId].num === 0) {
+        delete shoppingCart[shopID][itemId];
       }
-      shoppingCart[shopId][foodCategoryId].num -= 1;
-      if (shoppingCart[shopId][foodCategoryId].num === 0) {
-        delete shoppingCart[shopId][foodCategoryId];
+      shoppingCart[shopID][foodCategoryId].num -= 1;
+      if (shoppingCart[shopID][foodCategoryId].num === 0) {
+        delete shoppingCart[shopID][foodCategoryId];
       }
-      if (Object.keys(shoppingCart[shopId]).length === 0) {
-        delete shoppingCart[shopId];
+      if (Object.keys(shoppingCart[shopID]).length === 0) {
+        delete shoppingCart[shopID];
       }
       return state.set("shoppingCart", fromJS(shoppingCart));
     }
     case constants.EMPTY_SHOP_CART: {
-      return state.deleteIn(["shoppingCart", "" + action.shopId]);
+      return state.deleteIn(["shoppingCart", "" + action.shopID]);
     }
 
     // rating相关

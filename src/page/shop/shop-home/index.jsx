@@ -30,7 +30,6 @@ class ShopHome extends PureComponent {
     // const { history } = this.props;
     // const { id } = this.props.match.params;
     // history.replace(`/shop/${id}/${key}`);
-    console.log(key);
     if (key === "menu" && !this.state.showMenu) {
       this.setState({
         showMenu: true,

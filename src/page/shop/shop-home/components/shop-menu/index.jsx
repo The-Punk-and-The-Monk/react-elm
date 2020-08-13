@@ -30,7 +30,7 @@ class ShopMenu extends React.PureComponent {
       menuSelectedFoodCategoryIdx: 0,
       showSpecModal: false,
       foodItem: null, // modal 的foodItem
-      specModalSelectedFood: null,
+      specModalSelectedFoodId: null,
     };
     this.listSentinelHeaderRefs = []; // menuIdx => listheaderref
     this.ios = [];
@@ -120,9 +120,29 @@ class ShopMenu extends React.PureComponent {
   handleSpecModalOk = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const { addFoodToCart } = this.props;
-    if (this.state.specModalSelectedFood) {
-      addFoodToCart(this.state.specModalSelectedFood);
+    const { shopID, addFoodToCart } = this.props;
+    const { foodItem, specModalSelectedFoodId } = this.state;
+    if (specModalSelectedFoodId) {
+      const idx = foodItem
+        .get("specfoods")
+        .findIndex(
+          (value) => value.get("food_id") + "" === specModalSelectedFoodId + ""
+        );
+      const food = foodItem.get("specfoods").get(idx);
+      addFoodToCart({
+        shopID,
+        foodId: food.get("food_id"),
+        foodCategoryId: foodItem.get("category_id"),
+        itemId: foodItem.get("item_id"),
+        name: food.get("name"),
+        num: 1,
+        specs_name: food.get("specs_name"),
+        packing_fee: food.get("packing_fee"),
+        price: food.get("price"),
+        sku_id: food.get("sku_id"),
+        specs: food.get("specs").toJS(),
+        stock: food.get("stock"),
+      });
     }
   };
 
@@ -131,14 +151,14 @@ class ShopMenu extends React.PureComponent {
     this.setState({
       showSpecModal: false,
       foodItem: null,
-      specModalSelectedFood: null,
+      specModalSelectedFoodId: null,
     });
   };
 
   // modal中选中的项目改变
   handleSpecModalRadioChange = (e) => {
     this.setState({
-      specModalSelectedFood: e.target.value,
+      specModalSelectedFoodId: e.target.value,
     });
   };
 
@@ -199,24 +219,14 @@ class ShopMenu extends React.PureComponent {
               getContainer="#spec-modal-container"
             >
               <p>规格</p>
-              <Radio.Group onChange={this.handleSpecModalRadioChange}>
+              <Radio.Group
+                onChange={this.handleSpecModalRadioChange}
+                value={this.state.specModalSelectedFoodId}
+              >
                 {this.state.foodItem.get("specfoods").map((food, index) => (
                   <Radio.Button
                     key={food.get("food_id")}
-                    value={{
-                      shopID,
-                      foodId: food.get("food_id"),
-                      foodCategoryId: this.state.foodItem.get("category_id"),
-                      itemId: this.state.foodItem.get("item_id"),
-                      name: food.get("name"),
-                      num: 1,
-                      specs_name: food.get("specs_name"),
-                      packing_fee: food.get("packing_fee"),
-                      price: food.get("price"),
-                      sku_id: food.get("sku_id"),
-                      specs: food.get("specs").toJS(),
-                      stock: food.get("stock"),
-                    }}
+                    value={food.get("food_id")}
                     onChange={this.handleSpecModalRadioChange}
                   >
                     {food.get("specs_name")}
