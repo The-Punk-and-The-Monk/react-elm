@@ -39,10 +39,10 @@ class ShopMenu extends React.PureComponent {
 
   componentDidMount() {
     console.log("shopmenu mount");
-    const { id } = this.props.match.params;
+    const { shopID } = this.props;
     const { getShopMenu, menu } = this.props;
     if (!menu.size) {
-      getShopMenu(id);
+      getShopMenu(shopID);
     }
   }
 
@@ -143,7 +143,7 @@ class ShopMenu extends React.PureComponent {
   };
 
   render() {
-    const { id: shopId } = this.props.match.params;
+    const { shopID } = this.props;
     const {
       menu,
       shoppingCart,
@@ -161,7 +161,7 @@ class ShopMenu extends React.PureComponent {
         <div className="shop-menu-wrapper">
           <MenuSider
             {...{
-              shopId,
+              shopID,
               menu,
               shoppingCart,
               menuSelectedFoodCategoryIdx,
@@ -170,7 +170,7 @@ class ShopMenu extends React.PureComponent {
           />
           <FoodList
             {...{
-              shopId,
+              shopID,
               menu,
               shoppingCart,
               addFoodToCart,
@@ -180,7 +180,7 @@ class ShopMenu extends React.PureComponent {
           />
           <MenuFooter
             {...{
-              shopId,
+              shopID,
               shoppingCart,
               addFoodToCart,
               decreaseFoodFromCart,
@@ -204,7 +204,7 @@ class ShopMenu extends React.PureComponent {
                   <Radio.Button
                     key={food.get("food_id")}
                     value={{
-                      shopId,
+                      shopID,
                       foodId: food.get("food_id"),
                       foodCategoryId: this.state.foodItem.get("category_id"),
                       itemId: this.state.foodItem.get("item_id"),
@@ -238,8 +238,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getShopMenu(shopId) {
-    return dispatch(shopActionCreators.getShopMenu(shopId));
+  getShopMenu(shopID) {
+    return dispatch(shopActionCreators.getShopMenu(shopID));
   },
   addFoodToCart(params) {
     dispatch(shopActionCreators.addFoodToCart(params));
@@ -247,8 +247,8 @@ const mapDispatchToProps = (dispatch) => ({
   decreaseFoodFromCart(params) {
     dispatch(shopActionCreators.decreaseFoodFromCart(params));
   },
-  emptyShopCart(shopId) {
-    dispatch(shopActionCreators.emptyShopCart(shopId));
+  emptyShopCart(shopID) {
+    dispatch(shopActionCreators.emptyShopCart(shopID));
   },
 });
 

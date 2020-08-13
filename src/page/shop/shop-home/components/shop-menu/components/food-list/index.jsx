@@ -1,10 +1,12 @@
 import React from "react";
-import { Row, Col, Avatar, List, message } from "antd";
+import { Row, Col, List, message } from "antd";
+import Avatar from "src/components/lazy-avatar";
+
 import "./style.scss";
 
 const FoodList = (props) => {
   const {
-    shopId,
+    shopID,
     menu,
     shoppingCart,
     addFoodToCart,
@@ -22,7 +24,7 @@ const FoodList = (props) => {
 
   function getFoodParamsFromFoodItem(foodItem) {
     return {
-      shopId,
+      shopID,
       foodId: foodItem.getIn(["specfoods", 0, "food_id"]),
       foodCategoryId: foodItem.get("category_id"),
       itemId: foodItem.get("item_id"),
@@ -43,6 +45,7 @@ const FoodList = (props) => {
       {menu.map((foodCategory, idx) => (
         <List
           className="sticky-section"
+          // 每个子列表的头部
           header={
             <div data-idx={idx} className="sticky-header">
               <span className="food-list-title">
@@ -58,16 +61,18 @@ const FoodList = (props) => {
           {foodCategory.get("foods").map((foodItem) => (
             <List.Item key={foodItem.get("item_id")}>
               <Row>
+                {/* 食品头像 */}
                 <Col span={6}>
                   <Avatar
                     src={"/img/" + foodItem.get("image_path")}
-                    size={60}
+                    size={50}
                     shape="square"
                     className="food-avatar"
                   />
                 </Col>
+                {/* 食品信息 */}
                 <Col span={18}>
-                  <div>
+                  <div className="food-info">
                     <h1>{foodItem.get("name")}</h1>
                     <p className="description">{foodItem.get("description")}</p>
                     <p>{foodItem.get("tips")}</p>
@@ -78,10 +83,10 @@ const FoodList = (props) => {
                             color:
                               "#" +
                               foodItem.get("activity").get("image_text_color"),
-                            borderWidth: "1px",
+                            borderWidth: "px2vw(1)",
                             borderStyle: "solid",
-                            fontSize: "12px",
-                            borderRadius: "6px",
+                            fontSize: "px2vw(12)",
+                            borderRadius: "px2vw(6)",
                             borderColor:
                               "#" + foodItem.get("activity").get("icon_color"),
                           }}
@@ -90,6 +95,8 @@ const FoodList = (props) => {
                         </span>
                       </p>
                     ) : null}
+
+                    {/* 价格等 */}
                     <Row justify="space-between" align="middle">
                       <Col span={4}>
                         <span className="price">
@@ -102,7 +109,7 @@ const FoodList = (props) => {
                         {
                           // 当前食物在购物车内显示减号和数量
                           shoppingCart.getIn([
-                            "" + shopId,
+                            "" + shopID,
                             "" + foodItem.get("item_id"),
                           ]) ? (
                             <span>
@@ -115,7 +122,7 @@ const FoodList = (props) => {
                               </svg>
                               <span className="cart-cnt">
                                 {shoppingCart.getIn([
-                                  "" + shopId,
+                                  "" + shopID,
                                   "" + foodItem.get("item_id"),
                                   "num",
                                 ])}

@@ -5,7 +5,7 @@ import "./style.scss";
 
 const MenuSider = (props) => {
   const {
-    shopId,
+    shopID,
     menu,
     shoppingCart,
     menuSelectedFoodCategoryIdx,
@@ -34,13 +34,13 @@ const MenuSider = (props) => {
                 {/* 显示该category下在购物车中的数量 */}
 
                 {shoppingCart.getIn([
-                  "" + shopId,
+                  "" + shopID,
                   "" + foodCategory.get("id"),
                   "num",
                 ]) ? (
                   <span className="category-cnt">
                     {shoppingCart.getIn([
-                      "" + shopId,
+                      "" + shopID,
                       "" + foodCategory.get("id"),
                       "num",
                     ])}

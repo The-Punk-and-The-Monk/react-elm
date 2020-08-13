@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import { Rate, Skeleton, List, Comment, Avatar, Tag } from "antd";
+import { Rate, Skeleton, List, Comment, Tag } from "antd";
+import Avatar from "src/components/lazy-avatar";
+
 import ListFooter from "src/components/list-footer";
 
 const RatingList = (props) => {
@@ -32,7 +34,7 @@ const RatingList = (props) => {
                       <span>{item.get("time_spent_desc")}</span>
                     </p>
                     <p>{item.get("rating_text")}</p>
-                    <p>
+                    <div>
                       {item.get("item_ratings").map((img) => {
                         return img.get("image_hash") ? (
                           <Avatar
@@ -42,7 +44,7 @@ const RatingList = (props) => {
                           />
                         ) : null;
                       })}
-                    </p>
+                    </div>
                     <p>
                       {item.get("tags").map((tag) => (
                         <Tag key={tag}>{tag}</Tag>

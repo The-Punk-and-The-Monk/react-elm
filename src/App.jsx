@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-08-02 14:10:36
+ * @LastEditTime: 2020-08-13 11:50:43
  * @FilePath: /react-elm/src/App.jsx
  * @Description: entry
  */
@@ -30,8 +30,11 @@ import User from "./page/user/loadable.jsx";
 import Shop from "./page/shop/loadable.jsx";
 import Building from "src/components/building";
 
-import "./reset.css";
+import "./utils/uuid.jsx";
+
+import "./css/reset.css";
 import "antd/dist/antd.css";
+import "./css/antd-adjust.scss";
 
 const App = () => (
   <Fragment>

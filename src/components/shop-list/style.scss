@@ -1,8 +1,8 @@
 .shop-list-wrapper {
   .list-title {
-    font-size: 14px;
+    font-size: px2vw(14);
     color: #999;
-    margin-right: 4px;
+    margin-right: px2vw(4);
   }
 
   .list-item-content-wrapper {
@@ -10,7 +10,7 @@
     align-items: center;
 
     .shop-list-item-avatar-wraper {
-      margin-right: 5px;
+      margin-right: px2vw(5);
 
       img {
         display: block;
@@ -24,21 +24,29 @@
 
     div.am-card.am-card-full {
       &::before {
-        height: 0px;
+        height: px2vw(0);
       }
 
       &::after {
-        height: 0px;
+        height: px2vw(0);
       }
     }
 
+    // .shop-name {
+    //   display: inline-block;
+    //   width: 30vw;
+    //   overflow: hidden;
+    //   text-overflow: ellipsis;
+    //   white-space: nowrap;
+    // }
+
     .premium {
-      font-size: 12px;
+      font-size: px2vw(12);
       font-weight: bold;
       background: #ffd930;
-      border-radius: 2px;
-      padding: 2px;
-      margin-right: 5px;
+      border-radius: px2vw(2);
+      padding: px2vw(2);
+      margin-right: px2vw(5);
     }
 
     .card-wrapper {
@@ -46,23 +54,23 @@
     }
 
     .am-card-header {
-      padding: 9px 2px;
+      padding: px2vw(9) px2vw(2);
     }
 
     .support-icon {
       color: #ccc;
-      font-size: 5px;
-      border: 1px solid #ccc;
-      border-radius: 1px;
-      margin: 1px;
+      font-size: px2vw(5);
+      border: px2vw(1) solid #ccc;
+      border-radius: px2vw(1);
+      margin: px2vw(1);
     }
 
     .ant-rate {
-      font-size: 10px;
+      font-size: px2vw(10);
     }
 
     .recent-order-num {
-      font-size: 10px;
+      font-size: px2vw(10);
       color: #888;
     }
 
@@ -77,34 +85,34 @@
       text-align: right;
 
       span {
-        font-size: 12px;
+        font-size: px2vw(12);
 
         &:nth-child(2n + 1) {
           color: #fff;
           background: #3190e8;
-          border: 1px solid #3190e8;
-          border-radius: 1px;
-          margin-right: 2px;
+          border: px2vw(1) solid #3190e8;
+          border-radius: px2vw(1);
+          margin-right: px2vw(2);
         }
 
         &:nth-child(2n) {
           color: #3190e8;
-          border: 1px solid #3190e8;
-          border-radius: 1px;
+          border: px2vw(1) solid #3190e8;
+          border-radius: px2vw(1);
         }
       }
     }
 
     .am-card-footer {
-      padding: 2px;
+      padding: px2vw(2);
     }
 
     .am-card-footer-content {
-      font-size: 12px;
+      font-size: px2vw(12);
     }
 
     .am-card-footer-extra {
-      font-size: 12px;
+      font-size: px2vw(12);
     }
   }
 }

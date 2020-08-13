@@ -7,41 +7,41 @@
   z-index: 200;
   .shopping-cart-svg {
     position: absolute;
-    bottom: 20px;
-    left: 66px;
-    width: 70px;
-    height: 70px;
-    border: 3px solid #6da0cf;
-    border-radius: 35px;
-    line-height: 70px;
+    bottom: px2vw(20);
+    left: px2vw(66);
+    width: px2vw(70);
+    height: px2vw(70);
+    border: px2vw(3) solid #6da0cf;
+    border-radius: px2vw(35);
+    line-height: px2vw(70);
     text-align: center;
     font-size: 3em;
     background: #3190e8;
   }
   .shopping-cart-badge {
     position: absolute;
-    left: 118px;
-    bottom: 70px;
+    left: px2vw(118);
+    bottom: px2vw(70);
     color: white;
     background: #e66c6a;
-    font-size: 12px;
-    min-width: 16px;
-    border-radius: 8px;
-    height: 16px;
+    font-size: px2vw(12);
+    min-width: px2vw(16);
+    border-radius: px2vw(8);
+    height: px2vw(16);
     text-align: center;
-    line-height: 16px;
+    line-height: px2vw(16);
   }
   .price-sum {
     position: absolute;
     height: 100%;
-    left: 150px;
+    left: px2vw(150);
     p {
       margin-bottom: 0;
-      font-size: 12px;
+      font-size: px2vw(12);
       color: white;
     }
     p:first-child {
-      font-size: 21px;
+      font-size: px2vw(21);
       font-weight: bold;
     }
   }
@@ -49,12 +49,12 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 110px;
+    width: px2vw(110);
     height: 100%;
     background: #96a9b9;
     text-align: center;
-    line-height: 50px;
-    font-size: 20px;
+    line-height: px2vw(50);
+    font-size: px2vw(20);
     &.active {
       background: #4cd964;
       color: white;
@@ -69,19 +69,19 @@
     height: 50% !important;
   }
   .ant-drawer-body {
-    padding: 5px 24px;
-    font-size: 20px;
+    padding: px2vw(5) px2vw(24);
+    font-size: px2vw(20);
   }
   .drawer-title {
     display: flex;
     justify-content: space-between;
     font-weight: normal;
     span {
-      font-size: 15px;
-      margin-right: 3px;
+      font-size: px2vw(15);
+      margin-right: px2vw(3);
     }
     span:nth-child(1) {
-      font-size: 20px;
+      font-size: px2vw(20);
     }
   }
   .list-wrapper {
@@ -92,14 +92,14 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      font-size: 20px;
+      font-size: px2vw(20);
       .left {
         text-align: left;
       }
       .right {
         text-align: right;
         span:not(:last-child) {
-          margin-right: 10px;
+          margin-right: px2vw(10);
         }
       }
     }

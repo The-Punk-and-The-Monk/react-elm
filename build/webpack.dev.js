@@ -61,7 +61,7 @@ module.exports = merge(webpackCommonConf, {
           {
             loader: "sass-resources-loader",
             options: {
-              resources: "src/vars.scss",
+              resources: "src/css/vars.scss",
             },
           },
         ],

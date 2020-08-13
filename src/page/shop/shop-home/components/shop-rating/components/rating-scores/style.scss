@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: space-evenly;
   background: white;
-  border-bottom: 1px solid #ccc;
-  padding: 20px 0;
+  border-bottom: px2vw(1) solid #ccc;
+  padding: px2vw(20) 0;
   .left {
     text-align: center;
 
@@ -18,7 +18,7 @@
   }
   .right {
     span:not(:last-child) {
-      margin-right: 10px;
+      margin-right: px2vw(10);
     }
   }
 }

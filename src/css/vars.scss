@@ -1,0 +1,11 @@
+$vw_base: 375;
+$font_size_base: 14;
+@function px2vw($px) {
+  @return ($px/$vw_base) * 100vw;
+}
+
+$header-height: px2vw(45);
+$footer-height: px2vw(55);
+$shop-home-nav-height: px2vw(50);
+$shop-home-menu-sider-width: px2vw(100);
+$shop-home-menu-footer-height: px2vw(50);

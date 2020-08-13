@@ -2,16 +2,16 @@
   width: $shop-home-menu-sider-width;
   float: left;
   position: sticky;
-  top: $shop-home-nav-height - 2; // 跟food-list-header顶部对齐
+  top: $shop-home-nav-height - px2vw(2); // 跟food-list-header顶部对齐
   height: calc(100vh - #{$shop-home-nav-height});
   overflow: scroll;
   padding-bottom: $shop-home-menu-footer-height;
   .ant-menu {
     .ant-menu-item {
-      height: 42px;
-      line-height: 42px;
+      height: px2vw(42);
+      line-height: px2vw(42);
       margin-top: 0;
-      font-size: 16px;
+      font-size: px2vw(16);
     }
     .ant-menu-item-active {
       color: rgba(0, 0, 0, 0.65); // 选中的menu字体不变色

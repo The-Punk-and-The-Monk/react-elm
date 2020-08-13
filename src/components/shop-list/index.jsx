@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-08-01 18:56:33
- * @LastEditTime: 2020-08-02 18:20:08
+ * @LastEditTime: 2020-08-13 12:44:31
  * @FilePath: /react-elm/src/components/shop-list/index.jsx
  * @Description: 餐馆列表
  */
@@ -10,7 +10,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Card, List } from "antd-mobile";
-import { Rate, Skeleton, Avatar } from "antd";
+import { Rate, Skeleton } from "antd";
+import Avatar from "src/components/lazy-avatar";
 import ListFooter from "../list-footer";
 import "./style.scss";
 
@@ -56,7 +57,7 @@ const ShopList = (props) => {
           <div className="shop-list-item-avatar-wraper">
             <Avatar
               shape="square"
-              size={80}
+              size={70}
               src={"/img/" + data.get("image_path")}
               alt={data.get("name")}
             />
@@ -70,9 +71,29 @@ const ShopList = (props) => {
                     {data.get("is_premium") ? (
                       <span className="premium">品牌</span>
                     ) : null}
-                    <span>{data.get("name")}</span>
+                    <span className="shop-name">{data.get("name")}</span>
                   </div>
                 }
+              />
+              <Card.Footer
+                content={
+                  <div className="card-mid-wrapper">
+                    <Rate
+                      disabled
+                      allowHalf
+                      defaultValue={data.get("rating")}
+                    />
+                    <span className="recent-order-num">
+                      月售{data.get("recent_order_num")}单
+                    </span>
+                  </div>
+                }
+              />
+
+              <Card.Footer
+                content={`¥${data.get(
+                  "float_minimum_order_amount"
+                )}起送 / 配送费约¥${data.get("float_delivery_fee")}`}
                 extra={
                   <div>
                     {data.get("supports").map((support) => (
@@ -86,28 +107,20 @@ const ShopList = (props) => {
                   </div>
                 }
               />
-              <div className="card-mid-wrapper">
-                <Rate disabled allowHalf defaultValue={data.get("rating")} />
-                <span className="recent-order-num">
-                  月售{data.get("recent_order_num")}单
-                </span>
-
-                {data.get("delivery_mode") ? (
-                  <div className="delivery-wrapper">
-                    <span>{data.get("delivery_mode").get("text")}</span>
-                    {data.get("delivery_mode").get("is_solid") ? (
-                      <span>准时达</span>
-                    ) : null}
-                  </div>
-                ) : null}
-              </div>
               <Card.Footer
-                content={`¥${data.get(
-                  "float_minimum_order_amount"
-                )}起送 / 配送费约¥${data.get("float_delivery_fee")}`}
-                extra={`${data.get("distance")} / ${data.get(
+                content={`${data.get("distance")} / ${data.get(
                   "order_lead_time"
                 )}`}
+                extra={
+                  data.get("delivery_mode") ? (
+                    <div className="delivery-wrapper">
+                      <span>{data.get("delivery_mode").get("text")}</span>
+                      {data.get("delivery_mode").get("is_solid") ? (
+                        <span>准时达</span>
+                      ) : null}
+                    </div>
+                  ) : null
+                }
               />
             </Card>
           </div>

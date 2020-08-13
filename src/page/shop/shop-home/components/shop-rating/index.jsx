@@ -12,7 +12,7 @@ import "./style.scss";
 class ShopRatings extends React.PureComponent {
   componentDidMount() {
     console.log("shoprating mount");
-    const { id: shopID } = this.props.match.params;
+    const { shopID } = this.props;
     const {
       ratingScores,
       ratingTags,
@@ -35,7 +35,7 @@ class ShopRatings extends React.PureComponent {
   }
 
   loadMoreRatings = () => {
-    const { id: shopID } = this.props.match.params;
+    const { shopID } = this.props;
     const { getRatingList, ratingList } = this.props;
     getRatingList({
       shopID,

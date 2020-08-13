@@ -4,7 +4,8 @@ import { actionCreators } from "./store";
 import { actionCreators as shopCategoryActionCreators } from "src/page/shop-category/store";
 
 import ShopList from "src/components/shop-list";
-import { Row, Col, Cascader, Avatar, Badge, Select } from "antd";
+import { Row, Col, Cascader, Badge, Select } from "antd";
+import Avatar from "src/components/lazy-avatar";
 
 import "./style.scss";
 

@@ -1,35 +1,35 @@
 .form-wrapper {
   margin-top: $header-height; // header height
-  padding-top: 20px;
+  padding-top: px2vw(20);
   > input {
-    font-size: 20px;
+    font-size: px2vw(20);
     display: block;
     width: 100%;
-    height: 60px;
+    height: px2vw(60);
     border: none;
     outline: none;
-    padding: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: px2vw(20);
+    border-bottom: px2vw(1) solid rgba(0, 0, 0, 0.1);
   }
   .captcha-wrapper {
     display: flex;
     input {
       flex: 5;
-      font-size: 20px;
+      font-size: px2vw(20);
       display: block;
-      height: 60px;
+      height: px2vw(60);
       border: none;
       outline: none;
-      padding: 20px;
+      padding: px2vw(20);
     }
     img {
       flex: 1;
       background: #fff;
-      height: 60px;
+      height: px2vw(60);
     }
     div {
       background: #fff;
-      height: 60px;
+      height: px2vw(60);
     }
   }
 
@@ -37,19 +37,19 @@
     display: block;
     width: 90%;
     margin: auto;
-    padding: 10px;
-    font-size: 20px;
+    padding: px2vw(10);
+    font-size: px2vw(20);
     background: #1890ff;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: px2vw(5);
   }
 
   .reset-password {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 40px;
+    bottom: px2vw(40);
     color: #1890ff;
     margin: auto;
     text-align: center;

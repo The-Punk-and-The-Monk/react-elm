@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:37:15
- * @LastEditTime: 2020-08-02 11:53:51
+ * @LastEditTime: 2020-08-13 11:32:30
  * @FilePath: /react-elm/build/webpack.prod.js
  * @Description: prod
  */
@@ -84,7 +84,7 @@ module.exports = merge(webpackCommonConf, {
           {
             loader: "sass-resources-loader",
             options: {
-              resources: "src/vars.scss",
+              resources: "src/css/vars.scss",
             },
           },
         ],

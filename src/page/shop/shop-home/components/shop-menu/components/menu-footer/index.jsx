@@ -7,16 +7,16 @@ const MenuFooter = (props) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const {
     shoppingCart,
-    shopId,
+    shopID,
     addFoodToCart,
     decreaseFoodFromCart,
     emptyShopCart,
   } = props;
-  const cartEmpty = shoppingCart.get("" + shopId) ? false : true;
+  const cartEmpty = shoppingCart.get("" + shopID) ? false : true;
   let priceSum = 0;
   let packingFee = 0;
   let itemCnt = 0;
-  let curCart = shoppingCart.get("" + shopId);
+  let curCart = shoppingCart.get("" + shopID);
   let items = [];
   if (!cartEmpty) {
     curCart = curCart.toJS();
@@ -72,7 +72,7 @@ const MenuFooter = (props) => {
         title={
           <div className="drawer-title">
             <span>购物车</span>
-            <span onClick={() => emptyShopCart(shopId)}>
+            <span onClick={() => emptyShopCart(shopID)}>
               <span>
                 <svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-lajixiang"></use>

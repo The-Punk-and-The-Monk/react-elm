@@ -1,12 +1,13 @@
 .shop-home-header {
   color: #ffffff;
-  padding: 10px;
+  padding: px2vw(10);
   position: relative;
-  .back-arrow {
+  .back-arrow,
+  .right-arrow {
     // position: absolute;
-    // top: 5px;
-    // left: 5px;
-    font-size: 22px;
+    // top: px2vw(5);
+    // left: px2vw(5);
+    font-size: px2vw(22);
   }
   .activities-p {
     margin-top: 0.5em;
@@ -26,15 +27,26 @@
     left: 0;
     width: 100%;
     height: 100%;
-    filter: blur(50px);
+    filter: blur(px2vw(50));
+  }
+  .shop-info {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   h1 {
     color: white;
+    font-size: px2vw(20);
+  }
+  p,
+  span {
+    font-size: px2vw(12);
   }
   .activities-icon {
     display: inline-block;
-    border-radius: 2px;
-    padding: 0 4px;
-    margin-right: 4px;
+    border-radius: px2vw(2);
+    padding: 0 px2vw(4);
+    margin-right: px2vw(4);
   }
 }

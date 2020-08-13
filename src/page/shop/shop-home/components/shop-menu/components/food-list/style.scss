@@ -4,78 +4,91 @@
   padding-bottom: $shop-home-menu-footer-height;
   .list-header-observe-area {
     position: fixed;
-    top: $shop-home-nav-height - 2px;
+    top: $shop-home-nav-height - px2vw(2);
     width: 100%;
-    height: 42px; // list header 的height
+    height: px2vw(42); // list header 的height
     z-index: 100;
     background: blue;
   }
   .food-list-title {
-    font-size: 16px;
+    font-size: px2vw(16);
   }
   .ant-list-header {
     position: sticky;
-    top: $shop-home-nav-height - 2px; // - 2 不知道为何有个缝隙, 也不是margin, 顺便跟menu-sider顶部对齐
+    top: $shop-home-nav-height - px2vw(2); // - 2 不知道为何有个缝隙, 也不是margin, 顺便跟menu-sider顶部对齐
     z-index: 50;
     background: #e6f7ff;
-    padding: 8px;
+    // padding: px2vw(8);
+    height: px2vw(42);
   }
   .food-list-title-desc {
-    margin-left: 5px;
-    font-size: 12px;
+    margin-left: px2vw(5);
+    font-size: px2vw(12);
     color: #aaa;
   }
   .food-avatar {
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: px2vw(10);
+    margin-top: px2vw(10);
   }
   .ant-list-item {
     background: white;
+    width: 100%;
+    overflow: hidden;
+    .food-info h1 {
+      width: 100%;
+    }
     .ant-row {
       width: 100%;
     }
     .ant-avatar {
     }
     h1 {
-      font-size: 1.5em;
-      margin: 0.17em 0;
+      font-size: px2vw(18);
+      margin: px2vw(0.17) 0;
+    }
+    p,
+    span {
+      font-size: px2vw(12);
     }
     .description {
       color: #aaa;
-      margin-bottom: 0.3em;
+      margin-bottom: px2vw(0.3);
+    }
+    svg.icon {
+      font-size: px2vw(16);
     }
   }
   .price {
     color: orange;
-    font-size: 1.5em;
+    font-size: px2vw(1.5);
     font-weight: bold;
   }
   .jia-jian {
     text-align: right;
-    font-size: 2em;
+    font-size: px2vw(2);
     .jia {
       display: inline-block;
-      margin-right: 10px;
+      margin-right: px2vw(10);
     }
   }
   .spec-span {
     color: #fff;
-    font-size: 18px;
+    font-size: px2vw(18);
     font-weight: lighter;
     background: #3190e8;
-    border-radius: 8px;
-    padding: 5px;
-    margin-right: 10px;
+    border-radius: px2vw(8);
+    padding: px2vw(5);
+    margin-right: px2vw(10);
     position: relative;
-    top: -4px;
+    top: -px2vw(4);
   }
   .sticky-section {
     position: relative;
   }
   .sticky-sentinel-header {
     position: absolute;
-    top: -($shop-home-nav-height - 2px);
-    height: $shop-home-nav-height - 2px;
+    top: -($shop-home-nav-height - px2vw(2));
+    height: $shop-home-nav-height - px2vw(2);
     visibility: hidden;
     // background: rgba(197, 197, 113, 0.5);
     z-index: 10000;
@@ -85,7 +98,7 @@
   .sticky-sentinel-footer {
     position: absolute;
     bottom: 0;
-    height: $shop-home-nav-height - 2px + 42px; // 42 为list-header的高度
+    height: $shop-home-nav-height - px2vw(2) + px2vw(42); // 42 为list-header的高度
     visibility: hidden;
     // background: rgba(184, 82, 82, 0.5);
     z-index: 10000;

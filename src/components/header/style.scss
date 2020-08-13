@@ -5,4 +5,20 @@
   z-index: 100;
   width: 100%;
   height: $header-height;
+  .am-navbar {
+    height: px2vw(45);
+  }
+  .am-navbar-title {
+    font-size: 5vw;
+  }
+  .am-navbar-right {
+    font-size: 4vw;
+  }
+  .am-navbar-left {
+    font-size: 4vw;
+  }
+  .am-icon-xs {
+    width: px2vw(18);
+    height: px2vw(18);
+  }
 }

@@ -7,14 +7,14 @@
 
   .spin-wrapper {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: px2vw(50);
+    height: px2vw(50);
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    line-height: 50px;
+    line-height: px2vw(50);
     text-align: center;
   }
 }

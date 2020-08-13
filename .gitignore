@@ -1,5 +1,11 @@
 node_modules
 API.md
 .gitignore
-.vscode/settings.json
+.vscode
 .DS_Store
+build/dist
+build/vhost
+build/react-elm-server.conf
+build/stats.json
+build/dist.tar
+

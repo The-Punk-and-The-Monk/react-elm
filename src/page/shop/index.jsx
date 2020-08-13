@@ -19,8 +19,8 @@ class Shop extends PureComponent {
   render() {
     return (
       <Switch>
-        <Route path="/shop/:id/:page" component={ShopHome} />
-        <Redirect from="/shop/:id" to="/shop/:id/menu" />
+        <Route path="/shop/:id/home" component={ShopHome} />
+        <Redirect from="/shop/:id" to="/shop/:id/home" />
         <Redirect from="/shop" to="/home" />
       </Switch>
     );

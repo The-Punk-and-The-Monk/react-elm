@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Header from "src/components/header";
 import Footer from "src/components/footer";
-import { Avatar, Row, Col, List } from "antd";
+import { Row, Col, List } from "antd";
+import Avatar from "src/components/lazy-avatar";
+
 import { UserOutlined } from "@ant-design/icons";
 import "./style.scss";
 
