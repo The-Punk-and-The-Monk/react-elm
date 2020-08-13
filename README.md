@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-13 10:32:33
+ * @LastEditTime: 2020-08-13 16:19:55
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -126,3 +126,7 @@ http://elm.linfeng.space
 还有一个应该是提交订单时的地址选择跟优惠券等, 这个暂时没时间去做了.剩下的感觉都是数据展示.
 
 在页面效果方面, 做了加载数据跟加载页面时的反馈, list 的无限加载. 相比[node-elm](https://github.com/bailicangdu/node-elm)少了一个添加到购物车时"+"的动画效果, 但是多做了商店首页的吸顶 banner 还有 banner 与 menu-sider 的选中项的同步.
+
+### 2020.8.13
+
+样式调整, 图片懒加载
