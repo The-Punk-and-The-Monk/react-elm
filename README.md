@@ -2,12 +2,16 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-04 20:23:46
+ * @LastEditTime: 2020-08-13 08:52:54
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
 
-# react-elm
+# 仿 elm 手机端项目
+
+## demo 地址
+
+http://elm.linfeng.space
 
 ## 说明
 
@@ -17,7 +21,7 @@
 
 ### 动机
 
-> 自学前端, 跟着网上的视频教程敲的项目只有一两个页面, 而且太"顺利"了, 整个流程都是安排好的, 所以需要自己从头敲个项目练手, 从环境配置到 webpack 打包到项目上线走一遍, 先创造问题, 在解决问题的过程中学习.
+> 学习前端, 跟着网上的视频教程敲的项目只有一两个页面, 而且太"顺利"了, 整个流程都是安排好的, 所以需要自己从头敲个项目练手, 从环境配置到 webpack 打包到项目上线走一遍, 先创造问题, 在解决问题的过程中学习.
 
 ### dependencies
 
