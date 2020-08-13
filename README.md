@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-08-13 08:52:54
+ * @LastEditTime: 2020-08-13 10:32:33
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -12,6 +12,8 @@
 ## demo 地址
 
 http://elm.linfeng.space
+
+请使用 chrome 的手机模式(ipad)预览
 
 ## 说明
 
