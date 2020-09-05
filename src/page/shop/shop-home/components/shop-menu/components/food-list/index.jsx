@@ -65,7 +65,6 @@ const FoodList = (props) => {
                 <Col span={6}>
                   <Avatar
                     src={"/img/" + foodItem.get("image_path")}
-                    size={50}
                     shape="square"
                     className="food-avatar"
                   />

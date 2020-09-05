@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:36:52
- * @LastEditTime: 2020-07-31 14:33:29
+ * @LastEditTime: 2020-09-05 17:59:53
  * @FilePath: /react-elm/build/webpack.dev.js
  * @Description:
  */
@@ -18,7 +18,8 @@ const { srcPath, distPath } = require("./paths.jsx");
 module.exports = merge(webpackCommonConf, {
   mode: "development",
   output: {
-    // filename: "[name].[contentHash:8].js", // name 即多入口是entry的key, 加上8字符哈希戳
+    filename: "[name].[contentHash:8].js", // name 即多入口是entry的key, 加上8字符哈希戳
+    chunkFilename: "[name].[contentHash:8].js",
     // path: distPath,
     publicPath: "/build/dist/", // 修改所有静态文件 url 的前缀
   },

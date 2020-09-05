@@ -39,7 +39,6 @@ const ShopHomeHeader = (props) => {
             <Col span={6}>
               <Avatar
                 src={"/img/" + shop.get("image_path")}
-                size={70}
                 className="shop-avatar"
               />
             </Col>

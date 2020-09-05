@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:14:39
- * @LastEditTime: 2020-07-28 21:55:54
+ * @LastEditTime: 2020-09-05 15:09:53
  * @FilePath: /react-elm/src/page/shop-category/store/actionCreators.jsx
  * @Description:
  */
@@ -24,20 +24,31 @@ export const concatShopList = (data) => ({
 });
 
 // 获取餐馆列表
-export const getShopList = (params) => {
-  return (dispatch) => {
-    _shopService.getShopList(params).then(
-      (res) => {
-        if (params.offset) {
-          dispatch(concatShopList(res.data));
-        } else {
-          dispatch(setShopList(res.data));
-        }
-      },
-      (err) => {
-        _errTips(err.message);
-      }
-    );
+export const getShopList = (function () {
+  let fetching = false;
+  return (params) => {
+    return (dispatch) => {
+      if (fetching) return;
+      fetching = true;
+      _shopService
+        .getShopList(params)
+        .then(
+          (res) => {
+            if (params.offset) {
+              dispatch(concatShopList(res.data));
+            } else {
+              dispatch(setShopList(res.data));
+            }
+          },
+          (err) => {
+            _errTips(err.message);
+          }
+        )
+        .then(() => {
+          fetching = false;
+        });
+    };
   };
-};
+})();
+
 // return a function

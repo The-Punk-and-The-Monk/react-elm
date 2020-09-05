@@ -2,9 +2,9 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-08-02 17:47:53
- * @LastEditTime: 2020-08-13 13:23:49
+ * @LastEditTime: 2020-09-05 15:46:06
  * @FilePath: /react-elm/src/components/lazy-avatar/index.jsx
- * @Description: 用在list后面, 用来判断list到底了没有, 到底了就调用hitBottomCallback
+ * @Description: 图片懒加载.
  */
 
 import React from "react";

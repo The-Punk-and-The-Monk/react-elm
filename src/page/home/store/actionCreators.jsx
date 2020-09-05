@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 09:14:39
- * @LastEditTime: 2020-07-27 11:46:59
+ * @LastEditTime: 2020-09-05 14:56:00
  * @FilePath: /react-elm/src/page/home/store/actionCreators.jsx
  * @Description:
  */
@@ -31,25 +31,35 @@ export const getHomeShopCategoryList = () => {
 };
 
 // 获取附近的餐馆列表
-export const getNearbyShopList = (params) => {
-  return (dispatch) => {
-    _shop.getShopList(params).then(
-      (res) => {
-        if (params.offset) {
-          dispatch({
-            type: constants.CONCAT_NEARBY_SHOP_LIST,
-            data: res.data,
-          });
-        } else {
-          dispatch({
-            type: constants.CHANGE_NEARBY_SHOP_LIST,
-            data: res.data,
-          });
-        }
-      },
-      (err) => {
-        _errTips(err.message);
-      }
-    );
+export const getNearbyShopList = (function () {
+  let fetching = false;
+  return (params) => {
+    return (dispatch) => {
+      if (fetching) return;
+      fetching = true;
+      _shop
+        .getShopList(params)
+        .then(
+          (res) => {
+            if (params.offset) {
+              dispatch({
+                type: constants.CONCAT_NEARBY_SHOP_LIST,
+                data: res.data,
+              });
+            } else {
+              dispatch({
+                type: constants.CHANGE_NEARBY_SHOP_LIST,
+                data: res.data,
+              });
+            }
+          },
+          (err) => {
+            _errTips(err.message);
+          }
+        )
+        .then(() => {
+          fetching = false;
+        });
+    };
   };
-};
+})();

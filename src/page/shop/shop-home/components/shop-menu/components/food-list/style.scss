@@ -29,6 +29,8 @@
   .food-avatar {
     margin-left: px2vw(10);
     margin-top: px2vw(10);
+    width: px2vw(50);
+    height: px2vw(50);
   }
   .ant-list-item {
     background: white;
@@ -89,8 +91,8 @@
     position: absolute;
     top: -($shop-home-nav-height - px2vw(2));
     height: $shop-home-nav-height - px2vw(2);
-    visibility: hidden;
-    // background: rgba(197, 197, 113, 0.5);
+    // visibility: hidden;
+    background: rgba(197, 197, 113, 0.5);
     z-index: 10000;
     left: 0;
     right: 0;
@@ -99,8 +101,8 @@
     position: absolute;
     bottom: 0;
     height: $shop-home-nav-height - px2vw(2) + px2vw(42); // 42 为list-header的高度
-    visibility: hidden;
-    // background: rgba(184, 82, 82, 0.5);
+    // visibility: hidden;
+    background: rgba(184, 82, 82, 0.5);
     z-index: 10000;
     left: 0;
     right: 0;

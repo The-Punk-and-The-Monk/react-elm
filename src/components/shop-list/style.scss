@@ -9,6 +9,16 @@
     display: flex;
     align-items: center;
 
+    .am-card-header {
+      font-size: px2vw(17);
+    }
+    .ant-avatar-square {
+      width: px2vw(70);
+      height: px2vw(70);
+      line-height: px2vw(70);
+      font-size: px2vw(18);
+    }
+
     .shop-list-item-avatar-wraper {
       margin-right: px2vw(5);
 

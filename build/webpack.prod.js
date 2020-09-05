@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:37:15
- * @LastEditTime: 2020-08-13 11:32:30
+ * @LastEditTime: 2020-09-05 18:06:32
  * @FilePath: /react-elm/build/webpack.prod.js
  * @Description: prod
  */
@@ -26,6 +26,7 @@ module.exports = merge(webpackCommonConf, {
   mode: "production",
   output: {
     filename: "[name].[contentHash:8].js", // name 即多入口是entry的key, 加上8字符哈希戳
+    chunkFilename: "[name].[contentHash:8].js",
     path: distPath,
     publicPath: "/", // 修改所有静态文件 url 的前缀
   },
@@ -92,7 +93,7 @@ module.exports = merge(webpackCommonConf, {
     ],
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       // window.ENV = 'production'

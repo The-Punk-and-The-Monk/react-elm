@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-27 10:14:49
- * @LastEditTime: 2020-08-02 18:40:02
+ * @LastEditTime: 2020-09-05 18:34:35
  * @FilePath: /react-elm/src/page/home/index.jsx
  * @Description:
  */
@@ -40,6 +40,19 @@ class Home extends PureComponent {
         longitude: addr.get("longitude"),
       });
     }
+    // import ShopCategory from "src/page/shop-category/loadable.jsx";
+    // import Location from "./page/location/loadable.jsx";
+    // import Search from "./page/search/loadable.jsx";
+    // import User from "./page/user/loadable.jsx";
+    // import Shop from "./page/shop/loadable.jsx";
+    console.log("home mount");
+    import(
+      /* webpackChunkName: "shopCategory" */ "src/page/shop-category/index.jsx"
+    ).then(() => console.log("shopcategory import"));
+    import(/* webpackChunkName: "Location" */ "src/page/location/index.jsx");
+    import(/* webpackChunkName: "Search" */ "src/page/search/index.jsx");
+    import(/* webpackChunkName: "User" */ "src/page/user/index.jsx");
+    import(/* webpackChunkName: "Shop" */ "src/page/shop/index.jsx");
   }
 
   handleCategoryClick = (target, index) => {
@@ -80,7 +93,6 @@ class Home extends PureComponent {
           icon: (
             <Avatar
               shape="square"
-              size={50}
               src={"/imgapi" + item.get("image_url")}
               alt={item.get("title")}
             />

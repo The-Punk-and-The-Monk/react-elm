@@ -20,7 +20,7 @@ function observeSentinelHeader(container, listSentinelHeaderRefs) {
           const rootBottom = entry.rootBounds.bottom;
 
           if (sentinelTop < rootTop && sentinelBottom > rootTop) {
-            // console.log("header fire");
+            console.log("header fire");
             const stickyHeader = entry.target.parentElement.querySelector(
               ".sticky-header"
             );
@@ -56,7 +56,7 @@ function observeSentinelFooter(container) {
             sentinelTop > rootTop &&
             Math.abs(sentinelTop - rootTop) < rootHeight / 4
           ) {
-            // console.log("footer fire");
+            console.log("footer fire");
             const stickyHeader = entry.target.parentElement.querySelector(
               ".sticky-header"
             );

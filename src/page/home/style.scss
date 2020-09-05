@@ -13,5 +13,21 @@
     .ant-carousel .slick-dots-bottom {
       bottom: -px2vw(7);
     }
+    .am-grid
+      .am-flexbox
+      .am-flexbox-item
+      .am-grid-item-content
+      .am-grid-item-inner-content {
+      .am-grid-text {
+        font-size: px2vw(12);
+        margin-top: px2vw(9);
+      }
+    }
+    .ant-avatar-square {
+      width: px2vw(50);
+      height: px2vw(50);
+      line-height: px2vw(50);
+      font-size: px2vw(18);
+    }
   }
 }
