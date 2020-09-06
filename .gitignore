@@ -3,7 +3,6 @@ API.md
 .gitignore
 .vscode
 .DS_Store
-build/dist
 build/vhost
 build/react-elm-server.conf
 build/stats.json
