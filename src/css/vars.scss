@@ -1,14 +1,6 @@
 $vw_base: 375;
 $scale: 100vw;
 
-// @media screen and (min-width: 750px) {
-//   $scale: 750px;
-// }
-
-// @media screen and (max-width: 375px) {
-//   $scale: 375px;
-// }
-
 $font_size_base: 14;
 @function px2vw($px) {
   @return ($px/$vw_base) * 100vw;
