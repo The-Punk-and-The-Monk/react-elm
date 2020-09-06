@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-08-01 18:56:33
- * @LastEditTime: 2020-09-06 07:41:57
+ * @LastEditTime: 2020-09-06 09:09:05
  * @FilePath: /react-elm/src/components/shop-list/ShopListScroll.jsx
  * @Description: 餐馆列表
  */
@@ -28,9 +28,12 @@ class ShopList extends React.PureComponent {
       startIdx: 0,
       endIdx: 0,
       oneScreenLen: 0,
+      oneScreenPx: 0,
     };
     this.firstListItem = null;
     this.lastListItem = null;
+    this.aboveListDiv = null;
+    this.belowListDiv = null;
     this.throttledUpdateIdx = throttle(this.updateIdx, 16);
   }
 
@@ -69,16 +72,12 @@ class ShopList extends React.PureComponent {
       listItemHeight,
       startIdx,
       endIdx,
+      oneScreenPx,
     } = this.state;
-    const firstListItem = document.querySelector("[data-isfirst=true]");
-    const lastListItem = document.querySelector("[data-islast=true]");
-    let oneScreenPx = oneScreenLen * listItemHeight;
-    let firstListItemTop = firstListItem.getBoundingClientRect().top;
-    let lastListItemBottom = lastListItem.getBoundingClientRect().bottom;
-    if (
-      firstListItemTop >= 0 ||
-      -firstListItem.getBoundingClientRect().top < oneScreenPx * 0.5
-    ) {
+
+    let firstListItemTop = this.aboveListDiv.getBoundingClientRect().top;
+    let lastListItemBottom = this.belowListDiv.getBoundingClientRect().bottom;
+    if (firstListItemTop >= 0 || -firstListItemTop < oneScreenPx * 0.5) {
       startIdx = Math.max(startIdx - oneScreenLen, 0);
       endIdx = Math.max(endIdx - oneScreenLen, cacheLen);
       this.updateState({
@@ -109,11 +108,15 @@ class ShopList extends React.PureComponent {
         let idealPortHeight = window.innerHeight;
         let oneScreenLen = Math.ceil(idealPortHeight / listItemHeight);
         let cacheLen = oneScreenLen * 5;
+        let oneScreenPx = oneScreenLen * listItemHeight;
 
+        this.aboveListDiv = document.querySelector("#aboveListDiv");
+        this.belowListDiv = document.querySelector("#belowListDiv");
         this.updateState({
           stateInited: true,
           listItemHeight,
           cacheLen,
+          oneScreenPx,
           startIdx: 0,
           endIdx: cacheLen,
           oneScreenLen,
@@ -263,8 +266,9 @@ class ShopList extends React.PureComponent {
           </Item>
         ) : null}
         <div style={{ paddingTop: startIdx * listItemHeight }}></div>
-
+        <div id="aboveListDiv"></div>
         {displayList}
+        <div id="belowListDiv"></div>
         {/* {hitBottomCallback ? (
           <Item>
             <ListFooter hitBottomCallback={hitBottomCallback} />
