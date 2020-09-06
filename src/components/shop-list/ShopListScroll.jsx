@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-08-01 18:56:33
- * @LastEditTime: 2020-09-06 14:00:54
+ * @LastEditTime: 2020-09-06 14:25:02
  * @FilePath: /react-elm/src/components/shop-list/ShopListScroll.jsx
  * @Description: 餐馆列表
  */
@@ -77,7 +77,7 @@ class ShopList extends React.PureComponent {
 
     let firstListItemTop = this.aboveListDiv.getBoundingClientRect().top;
     let lastListItemBottom = this.belowListDiv.getBoundingClientRect().bottom;
-    if (firstListItemTop >= 0 || -firstListItemTop < oneScreenPx * 0.5) {
+    if (firstListItemTop >= 0 || -firstListItemTop < oneScreenPx * 1.5) {
       startIdx = Math.max(startIdx - oneScreenLen, 0);
       endIdx = Math.max(endIdx - oneScreenLen, cacheLen);
       this.updateState({
@@ -86,7 +86,7 @@ class ShopList extends React.PureComponent {
       });
     } else if (
       lastListItemBottom < oneScreenPx ||
-      lastListItemBottom < oneScreenPx * 1.5
+      lastListItemBottom < oneScreenPx * (1.5 + 1)
     ) {
       startIdx = Math.max(startIdx + oneScreenLen, 0);
       endIdx = Math.max(endIdx + oneScreenLen, cacheLen);
@@ -177,8 +177,6 @@ class ShopList extends React.PureComponent {
             key={data.get("id")}
             className="shop-list-item"
             data-id={data.get("id")}
-            data-isfirst={idx === 0}
-            data-islast={idx === arr.size - 1}
           >
             <div className="list-item-content-wrapper">
               <div className="shop-list-item-avatar-wraper">
