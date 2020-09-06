@@ -30,7 +30,7 @@ function observeSentinelHeader(container, listSentinelHeaderRefs) {
       } catch (err) {}
     },
     {
-      threshold: [1],
+      threshold: [0, 0.25, 0.5, 0.75, 1],
     }
   );
   const stickyHeaders = addStickySentinel(container, "sticky-sentinel-header");
@@ -66,7 +66,7 @@ function observeSentinelFooter(container) {
       } catch (err) {}
     },
     {
-      threshold: [1],
+      threshold: [0, 0.25, 0.5, 0.75, 1],
     }
   );
   const stickyFooters = addStickySentinel(container, "sticky-sentinel-footer");

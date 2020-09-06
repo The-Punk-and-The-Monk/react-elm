@@ -11,7 +11,7 @@ $scale: 100vw;
 
 $font_size_base: 14;
 @function px2vw($px) {
-  @return ($px/$vw_base) * ($scale);
+  @return ($px/$vw_base) * 100vw;
 }
 
 $header-height: px2vw(45);

@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-08-01 18:56:33
- * @LastEditTime: 2020-09-06 09:09:05
+ * @LastEditTime: 2020-09-06 14:00:54
  * @FilePath: /react-elm/src/components/shop-list/ShopListScroll.jsx
  * @Description: 餐馆列表
  */
@@ -269,6 +269,14 @@ class ShopList extends React.PureComponent {
         <div id="aboveListDiv"></div>
         {displayList}
         <div id="belowListDiv"></div>
+        <div
+          style={{
+            paddingBottom: Math.max(
+              0,
+              (dataList.size - endIdx) * listItemHeight
+            ),
+          }}
+        ></div>
         {/* {hitBottomCallback ? (
           <Item>
             <ListFooter hitBottomCallback={hitBottomCallback} />
