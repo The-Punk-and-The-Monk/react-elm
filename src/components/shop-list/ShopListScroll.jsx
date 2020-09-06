@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-08-01 18:56:33
- * @LastEditTime: 2020-09-06 14:25:02
+ * @LastEditTime: 2020-09-07 06:46:05
  * @FilePath: /react-elm/src/components/shop-list/ShopListScroll.jsx
  * @Description: 餐馆列表
  */
@@ -41,10 +41,12 @@ class ShopList extends React.PureComponent {
     this.initScrollState();
     // this.checkDataListLen();
     document.addEventListener("scroll", this.throttledUpdateIdx);
+    window.addEventListener("resize", this.forceInitScrollState);
   }
 
   componentWillUnmount() {
     document.removeEventListener("scroll", this.throttledUpdateIdx);
+    window.removeEventListener("resize", this.forceInitScrollState);
   }
 
   componentDidUpdate() {
@@ -53,6 +55,10 @@ class ShopList extends React.PureComponent {
     // if (this.state.stateInited) {
     // }
   }
+
+  forceInitScrollState = () => {
+    this.initScrollState(true);
+  };
 
   updateState = (params) => {
     console.log("updatestate");
@@ -97,8 +103,8 @@ class ShopList extends React.PureComponent {
     }
   };
 
-  initScrollState = () => {
-    if (!this.state.stateInited) {
+  initScrollState = (force = false) => {
+    if (!this.state.stateInited || force) {
       console.log("initstate");
       let listItem = document.getElementsByClassName("shop-list-item")[0];
       if (listItem) {

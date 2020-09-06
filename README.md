@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-25 10:19:05
- * @LastEditTime: 2020-09-06 08:48:22
+ * @LastEditTime: 2020-09-07 06:55:28
  * @FilePath: /react-elm/README.md
  * @Description:
 -->
@@ -132,3 +132,11 @@ http://elm.linfeng.space
 ### 2020.8.13
 
 样式调整, 图片懒加载
+
+### 2020.9.6
+
+经过几次面试,暴露出很多问题,改进中
+
+1. 原本做的叫分包加载 -> 改为异步加载
+2. list 的无限加载, 在列表长度过长时, 带来性能问题 -> 改为限制真实 dom 数量, 并用空 div 占位, 撑开滚动条
+3. 稍微做了点移动端适配.
